@@ -3,7 +3,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace Hanlin.Common.Windows.Windows
+namespace Hanlin.Common.Windows
 {
     public class ClipboardOperationFailed : Exception
     {
