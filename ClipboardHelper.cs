@@ -2,6 +2,7 @@ using System;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Hanlin.Common.Windows
 {
@@ -43,10 +44,7 @@ namespace Hanlin.Common.Windows
 
         private static void SaveClipboardEmf(Stream stream, ImageFormat format)
         {
-            if (!OpenClipboard(IntPtr.Zero))
-            {
-                Failed("Cannot open clipboard.");
-            }
+            OpenClipboard();
 
             try
             {
@@ -70,6 +68,24 @@ namespace Hanlin.Common.Windows
                 // "An application should call the CloseClipboard function after every successful call to OpenClipboard."
                 //   -- http://msdn.microsoft.com/en-us/library/windows/desktop/ms649048(v=vs.85).aspx
                 CloseClipboard();
+            }
+        }
+
+        private static void OpenClipboard()
+        {
+            const int retries = 10;
+            int retryCount = 0;
+
+            while (!OpenClipboard(IntPtr.Zero))
+            {
+                if (retryCount > retries)
+                {
+                    Failed("Cannot open clipboard.");
+                }
+
+                Thread.Sleep(1);
+
+                retryCount++;
             }
         }
 
