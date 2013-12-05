@@ -11,20 +11,27 @@ namespace Hanlin.Common.Extensions
 {
     public static class ImageExtensions
     {
-        public static Image Resize(this Image srcImage, int newWidth)
+        public static Image Resize(this Image srcImage, int newWidth, int minHeight = 0)
         {
             var ratio = (double) newWidth / srcImage.Size.Width;
 
-            var newHeight = (int) (srcImage.Height * ratio);
+            var newHeight = (int) (srcImage.Height*ratio);
+
+            var canvasWidth = newWidth; // This method only support resize by width at the moment.
+            var canvasHeight = Math.Max(newHeight, minHeight);
 
             // Resizing code from: http://stackoverflow.com/a/87786/494297
-            var newImage = new Bitmap(newWidth, newHeight);
+            var newImage = new Bitmap(canvasWidth, canvasHeight);
             using (var gr = Graphics.FromImage(newImage))
             {
                 gr.SmoothingMode = SmoothingMode.HighQuality;
                 gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                gr.DrawImage(srcImage, new Rectangle(0, 0, newWidth, newHeight));
+
+                // Draw the image with vertically middle alignment when the minimum height is larger.
+                var drawAtY = canvasHeight > newHeight ? (canvasHeight - newHeight) / 2 : 0;
+
+                gr.DrawImage(srcImage, new Rectangle(0, drawAtY, newWidth, newHeight));
             }
 
             return newImage;
