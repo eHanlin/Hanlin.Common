@@ -26,9 +26,19 @@ namespace Hanlin.Common.Collections
             secondToFirst.Add(second, first);
         }
 
+        public TSecond GetByFirst(TFirst first)
+        {
+            return firstToSecond[first];
+        }
+
         public bool TryGetByFirst(TFirst first, out TSecond second)
         {
             return firstToSecond.TryGetValue(first, out second);
+        }
+
+        public TFirst GetBySecond(TSecond second)
+        {
+            return secondToFirst[second];
         }
 
         public bool TryGetBySecond(TSecond second, out TFirst first)
