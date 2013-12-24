@@ -63,6 +63,9 @@
     <Compile Include="ImageUtils.cs" />
     <Compile Include="Models\Curriculum.cs" />
     <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\Term.cs" />
+    <Compile Include="Models\TextVersion.cs" />
     <Compile Include="ProcessHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specifications\ISpecification.cs" />
