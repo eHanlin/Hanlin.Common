@@ -17,5 +17,11 @@ namespace Hanlin.Common.Extensions
             dictionary.TryGetValue(key, out ret);
             return ret;
         }
+
+        // Original source: http://stackoverflow.com/a/2819566
+        public static string AsString(this Dictionary<String, String> hash)
+        {
+            return String.Join(", ", hash.Select(kvp => kvp.Key + ":" + kvp.Value));
+        }
     }
 }

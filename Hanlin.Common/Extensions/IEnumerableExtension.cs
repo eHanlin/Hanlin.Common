@@ -34,5 +34,12 @@ namespace Hanlin.Common.Extensions
             double avg = array.Average();
             return Math.Sqrt(array.Average(v => Math.Pow(v - avg, 2)));
         }
+
+        public static string AsString<T>(this IEnumerable<T> list)
+        {
+            var str = string.Empty;
+            if (list != null) str = string.Join(", ", list);
+            return "[" + str + "]";
+        }
     }
 }
