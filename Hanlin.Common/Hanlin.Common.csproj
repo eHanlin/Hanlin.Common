@@ -52,6 +52,7 @@
     <Compile Include="Enums\Enumeration.cs" />
     <Compile Include="Enums\EnumExceptionHelper.cs" />
     <Compile Include="Enums\EnumHelper.cs" />
+    <Compile Include="EntityNotFoundException.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\StringBuilder.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
+    <Compile Include="HanlinApplicationException.cs" />
     <Compile Include="ImageUtils.cs" />
     <Compile Include="Models\Curriculum.cs" />
     <Compile Include="Models\Education.cs" />
