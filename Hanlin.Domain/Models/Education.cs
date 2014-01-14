@@ -1,6 +1,6 @@
 using Hanlin.Common.Enums;
 
-namespace Hanlin.Common.Models
+namespace Hanlin.Domain.Models
 {
     public class Education : Enumeration<string>
     {

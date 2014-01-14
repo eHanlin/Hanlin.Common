@@ -1,9 +1,9 @@
-ï»¿using System;
+using System;
 
-namespace Hanlin.Common.Models
+namespace Hanlin.Domain.Models
 {
 
-    // Migrated from ClientServicesï¼ˆç¿°æ—ç¶“éŠ·é›²ï¼‰project
+    // Migrated from ClientServices¡]¿«ªL¸g¾P¶³¡^project
     public class Term : IEquatable<Term>
     {
         public static readonly int RocYearOffset = 1911;
@@ -58,20 +58,20 @@ namespace Hanlin.Common.Models
         private static void ValidateTermId(string termId, out int yearInRoc, out byte aSemester)
         {
             if (string.IsNullOrEmpty(termId)) throw new ArgumentException("termId");
-            if (termId.Length < 3 || termId[0] == '0') throw new ArgumentException("Term id å¿…é ˆæ˜¯ä¸‰å€‹æ•¸å­—ä»¥ä¸Šä¸”ä¸èƒ½ä»¥é›¶é–‹é ­");
+            if (termId.Length < 3 || termId[0] == '0') throw new ArgumentException("Term id ¥²¶·¬O¤T­Ó¼Æ¦r¥H¤W¥B¤£¯à¥H¹s¶}ÀY");
 
             string yearStr = GetYearPart(termId);
 
             bool isValidYear = int.TryParse(yearStr, out yearInRoc);
 
-            if (!isValidYear) throw new ArgumentException("å¹´ä»½æ ¼å¼éŒ¯èª¤: " + termId, "termId");
+            if (!isValidYear) throw new ArgumentException("¦~¥÷®æ¦¡¿ù»~: " + termId, "termId");
 
             string semesterStr = GetSemesterPart(termId);
 
             bool isValidSemester = byte.TryParse(semesterStr, out aSemester);
 
             if (!isValidSemester)
-                throw new ArgumentException("å­¸æœŸæ ¼å¼éŒ¯èª¤-ä¸æ˜¯æ•´æ•¸: " + termId, "termId");
+                throw new ArgumentException("¾Ç´Á®æ¦¡¿ù»~-¤£¬O¾ã¼Æ: " + termId, "termId");
         }
 
         public string Id { get; set; }
@@ -84,7 +84,7 @@ namespace Hanlin.Common.Models
             {
                 if (value < RocYearOffset)
                 {
-                    throw new ArgumentException("è«‹ä½¿ç”¨è¥¿å…ƒå¹´. çµ¦äºˆçš„year=" + value);
+                    throw new ArgumentException("½Ğ¨Ï¥Î¦è¤¸¦~. µ¹¤©ªºyear=" + value);
                 }
                 _westernSchoolYear = value;
             }
@@ -105,7 +105,7 @@ namespace Hanlin.Common.Models
                 if (value < 1 || value > SemestersPerSchoolYear)
                 {
                     throw new ArgumentOutOfRangeException(
-                        string.Format("å­¸æœŸæ ¼å¼éŒ¯èª¤-å­¸æœŸ {0} ä¸åœ¨åˆæ³•ç¯„åœ [{1}, {2}]",
+                        string.Format("¾Ç´Á®æ¦¡¿ù»~-¾Ç´Á {0} ¤£¦b¦Xªk½d³ò [{1}, {2}]",
                         value, 1, SemestersPerSchoolYear));
                 }
                 _semester = value;
@@ -191,11 +191,11 @@ namespace Hanlin.Common.Models
         {
             get
             {
-                if (IsCurrentTerm) return "æœ¬æœŸ";
+                if (IsCurrentTerm) return "¥»´Á";
 
-                if (IsPreviousTerm) return "ä¸Šä¸€æœŸ";
+                if (IsPreviousTerm) return "¤W¤@´Á";
 
-                if (IsNextTerm) return "ä¸‹ä¸€æœŸ";
+                if (IsNextTerm) return "¤U¤@´Á";
 
                 return ShortName;
             }
@@ -213,7 +213,7 @@ namespace Hanlin.Common.Models
         {
             get
             {
-                return string.Format("{0}{1}å­¸æœŸ", RocSchoolYear, SemesterText);
+                return string.Format("{0}{1}¾Ç´Á", RocSchoolYear, SemesterText);
             }
         }
 
@@ -225,10 +225,10 @@ namespace Hanlin.Common.Models
                 switch (Semester)
                 {
                     case 1:
-                        semesterText = "ä¸Š";
+                        semesterText = "¤W";
                         break;
                     case 2:
-                        semesterText = "ä¸‹";
+                        semesterText = "¤U";
                         break;
                     default:
                         semesterText = "Unknown";
