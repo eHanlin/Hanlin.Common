@@ -14,6 +14,10 @@ namespace Hanlin.Common
         public const string bin = "application/octet-stream";
         public const string snappy = "application/gsnappy";
 
+        public const string doc = "application/msword";
+        public const string docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
+
         public const string unknown = "application/unknown";
 
         private static BiDictionary<string, string> _mapping = new BiDictionary<string, string>();
