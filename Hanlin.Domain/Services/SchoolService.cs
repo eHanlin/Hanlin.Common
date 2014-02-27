@@ -12,6 +12,11 @@ namespace Hanlin.Domain.Services
         {
         }
 
+        public string GetBaselineRocYear()
+        {
+            return "102";
+        }
+
         public Term GetCurrentTerm()
         {
             return new Term(DateTime.Now);
