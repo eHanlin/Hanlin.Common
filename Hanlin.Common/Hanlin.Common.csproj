@@ -36,7 +36,11 @@
     <Reference Include="LinqKit">
       <HintPath>..\..\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.2\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Collections\BiDictionary.cs" />
     <Compile Include="ContentType.cs" />
+    <Compile Include="Data\AdoHelper.cs" />
     <Compile Include="Enums\Enumeration.cs" />
     <Compile Include="Enums\EnumExceptionHelper.cs" />
     <Compile Include="Enums\EnumHelper.cs" />
