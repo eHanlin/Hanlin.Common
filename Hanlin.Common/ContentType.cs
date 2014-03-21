@@ -14,6 +14,9 @@ namespace Hanlin.Common
         public const string bin = "application/octet-stream";
         public const string snappy = "application/gsnappy";
 
+        public const string text_xml = "text/xml";
+        public const string application_xml = "application/xml";
+
         public const string doc = "application/msword";
         public const string docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
