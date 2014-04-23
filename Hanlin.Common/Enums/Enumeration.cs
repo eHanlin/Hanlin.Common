@@ -18,8 +18,6 @@ namespace Hanlin.Common.Enums
     /// 
     public class Enumeration<TValue> : Enumeration, IEnumeration, IComparable where TValue : IComparable<TValue>, IEquatable<TValue>
     {
-        private readonly TValue _value;
-
         public Enumeration()
         {
 
@@ -27,7 +25,7 @@ namespace Hanlin.Common.Enums
 
         protected Enumeration(TValue value, string displayName)
         {
-            _value = value;
+            Value = value;
             DisplayName = displayName;
         }
 
@@ -36,12 +34,9 @@ namespace Hanlin.Common.Enums
             return DisplayName;
         }
 
-        object IEnumeration.Value { get { return _value; } }
+        object IEnumeration.Value { get { return Value; } }
 
-        public TValue Value
-        {
-            get { return _value; }
-        }
+        public TValue Value { get; private set; }
 
         public override bool Equals(object obj)
         {
@@ -53,14 +48,14 @@ namespace Hanlin.Common.Enums
             }
 
             var typeMatches = GetType() == obj.GetType();
-            var valueMatches = _value.Equals(otherValue.Value);
+            var valueMatches = Value.Equals(otherValue.Value);
 
             return typeMatches && valueMatches;
         }
 
         public override int GetHashCode()
         {
-            return _value.GetHashCode();
+            return Value.GetHashCode();
         }
 
         public static bool operator ==(Enumeration<TValue> obj1, Enumeration<TValue> obj2)
