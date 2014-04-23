@@ -8,7 +8,7 @@ namespace Hanlin.Domain.Models
         public const string 英文 = "en";
         public const string 數學 = "ma";
 
-        public const string 自然與生活科技 = "na";
+        public const string 自然 = "na";
         public const string 生物 = "bi";
         public const string 理化 = "py";
         public const string 地科 = "ea";
@@ -39,7 +39,7 @@ namespace Hanlin.Domain.Models
         public static readonly Subject 公民 = new Subject(SubjectCode.公民, "公民", "社會", 490, new[] { Education.國中, Education.高中 });
 
         /* 領域 */
-        public static readonly Subject 自然與生活科技 = new Subject(SubjectCode.自然與生活科技, "自然與生活科技", "自生", 300, new Education[0]);
+        public static readonly Subject 自然與生活科技 = new Subject(SubjectCode.自然, "自然與生活科技", "自生", 300, new Education[0]);
         public static readonly Subject 社會 = new Subject(SubjectCode.社會, "社會", "社會", 400, new Education[0]);
 
 
@@ -59,5 +59,33 @@ namespace Hanlin.Domain.Models
         public string Area { get; private set; }
         public int Order { get; private set; }
         public Education[] Educations { get; private set; }
+    }
+
+    public class SeniorSubject : Enumeration<string>
+    {
+        public const string Prefix = "h";
+
+        public static readonly SeniorSubject 國文 = new SeniorSubject(Prefix + SubjectCode.國文, "國文");
+        public static readonly SeniorSubject 英文 = new SeniorSubject(Prefix + SubjectCode.英文, "英文");
+
+        public static readonly SeniorSubject 數學 = new SeniorSubject(Prefix + SubjectCode.數學, "數學");
+
+        public static readonly SeniorSubject 生物 = new SeniorSubject(Prefix + SubjectCode.生物, "生物");
+        public static readonly SeniorSubject 物理 = new SeniorSubject(Prefix + SubjectCode.物理, "物理");
+        public static readonly SeniorSubject 化學 = new SeniorSubject(Prefix + SubjectCode.化學, "化學");
+
+        public static readonly SeniorSubject 歷史 = new SeniorSubject(Prefix + SubjectCode.歷史, "歷史");
+        public static readonly SeniorSubject 地理 = new SeniorSubject(Prefix + SubjectCode.地理, "地理");
+        public static readonly SeniorSubject 公民與社會 = new SeniorSubject(Prefix + SubjectCode.公民, "公民與社會");
+
+        public SeniorSubject()
+        {
+
+        }
+
+        public SeniorSubject(string value, string name)
+            : base(value, name)
+        {
+        }
     }
 }
