@@ -81,7 +81,7 @@ namespace Hanlin.Common.Enums
     {
         public string DisplayName { get; protected set; }
 
-        public static IEnumerable<T> GetEnumerations<T>() where T : Enumeration, new()
+        public static IEnumerable<T> GetEnumerations<T>() where T : Enumeration
         {
             var enums = GetEnumerations(typeof (T));
             return enums.Cast<T>();
@@ -93,7 +93,7 @@ namespace Hanlin.Common.Enums
 
             foreach (var info in fields)
             {
-                var instance = Activator.CreateInstance(type);
+                var instance = Activator.CreateInstance(type, true);
                 var locatedValue = info.GetValue(instance);
 
                 if (locatedValue != null)
@@ -103,12 +103,12 @@ namespace Hanlin.Common.Enums
             }
         }
 
-        protected static T ParseOrNull<T>(Func<T, bool> predicate) where T : Enumeration, new()
+        protected static T ParseOrNull<T>(Func<T, bool> predicate) where T : Enumeration
         {
             return GetEnumerations<T>().FirstOrDefault(predicate);
         }
 
-        protected static T Parse<T, TValueToParse>(TValueToParse value, string description, Func<T, bool> predicate) where T : Enumeration, new()
+        protected static T Parse<T, TValueToParse>(TValueToParse value, string description, Func<T, bool> predicate) where T : Enumeration
         {
             var matchingItem = GetEnumerations<T>().FirstOrDefault(predicate);
 
@@ -126,20 +126,20 @@ namespace Hanlin.Common.Enums
             return matchingItem;
         }
 
-        public static T FromDisplayName<T>(string displayName, T defaultValue) where T : Enumeration, new()
+        public static T FromDisplayName<T>(string displayName, T defaultValue) where T : Enumeration
         {
             return string.IsNullOrEmpty(displayName) || !Enumeration.IsNameDefined<T>(displayName)
                        ? defaultValue
                        : Enumeration.FromDisplayName<T>(displayName);
         }
 
-        public static T FromDisplayName<T>(string displayName) where T : Enumeration, new()
+        public static T FromDisplayName<T>(string displayName) where T : Enumeration
         {
             var matchingItem = Parse<T, string>(displayName, "display name", item => item.DisplayName == displayName);
             return matchingItem;
         }
 
-        public static T FromDisplayNameOrNull<T>(string displayName) where T : Enumeration, new()
+        public static T FromDisplayNameOrNull<T>(string displayName) where T : Enumeration
         {
             if (displayName != null)
             {
@@ -149,7 +149,7 @@ namespace Hanlin.Common.Enums
         }
 
         public static T FromValue<T, TValue>(TValue value) 
-            where T : Enumeration<TValue>, new() 
+            where T : Enumeration<TValue> 
             where TValue : IComparable<TValue>, IEquatable<TValue>
         {
             var matchingItem = Parse<T, TValue>(value, "value", item => item.Value.Equals(value));
@@ -157,7 +157,7 @@ namespace Hanlin.Common.Enums
         }
 
         public static T FromValueOrNull<T, TValue>(TValue value) 
-            where T : Enumeration<TValue>, new()
+            where T : Enumeration<TValue>
             where TValue : IComparable<TValue>, IEquatable<TValue>
 
         {
@@ -168,7 +168,7 @@ namespace Hanlin.Common.Enums
             return null;
         }
 
-        public static bool IsNameDefined<T>(string name) where T : Enumeration, new()
+        public static bool IsNameDefined<T>(string name) where T : Enumeration
         {
             bool isDefined;
             try
@@ -184,7 +184,7 @@ namespace Hanlin.Common.Enums
         }
 
         public static bool IsValueDefined<T, TValue>(TValue value) 
-            where T : Enumeration<TValue>, new()
+            where T : Enumeration<TValue>
             where TValue : IComparable<TValue>, IEquatable<TValue>
 
         {
