@@ -29,6 +29,11 @@ namespace Hanlin.Tests
             return Path.Combine(BasePath, filename); 
         }
 
+        protected string PathToOutput(string filename)
+        {
+            return Path.Combine(BasePath, PathEx.AppendToPath(filename, "_output"));
+        }
+
         [TestFixtureSetUp]
         protected virtual void FixtureSetup()
         {
