@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Models\Curriculum.cs" />
     <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\Identity.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\TextVersion.cs" />

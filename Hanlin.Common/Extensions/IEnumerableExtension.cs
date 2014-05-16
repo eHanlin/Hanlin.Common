@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Hanlin.Common.Extensions
@@ -40,6 +41,27 @@ namespace Hanlin.Common.Extensions
             var str = string.Empty;
             if (list != null) str = string.Join(", ", list);
             return "[" + str + "]";
+        }
+
+        public static IEnumerable<T> TakeRandom<T>(this IEnumerable<T> source, int count)
+        {
+            var total = source.Count();
+
+            var randomIndices = new HashSet<int>();
+
+            var gen = new Random();
+
+            for (int i = 0; i < count; i++)
+            {
+                int next;
+                do
+                {
+                    next = gen.Next(0, total);
+                } while (randomIndices.Contains(next));
+                randomIndices.Add(next);
+            }
+
+            return randomIndices.Select(source.ElementAt).ToList();
         }
     }
 }

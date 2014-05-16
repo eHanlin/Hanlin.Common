@@ -27,6 +27,7 @@ namespace Hanlin.Common.Extensions
                 gr.SmoothingMode = SmoothingMode.HighQuality;
                 gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                gr.CompositingQuality = CompositingQuality.HighQuality;
 
                 // Draw the image with vertically middle alignment when the minimum height is larger.
                 var drawAtY = canvasHeight > newHeight ? (canvasHeight - newHeight) / 2 : 0;

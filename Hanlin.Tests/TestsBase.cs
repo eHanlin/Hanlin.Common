@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using Autofac.Extras.Moq;
+using Hanlin.Common.Utils;
 using NUnit.Framework;
 using log4net;
+using log4net.Appender;
+using log4net.Config;
+using log4net.Layout;
 
 namespace Hanlin.Tests
 {
@@ -20,8 +25,16 @@ namespace Hanlin.Tests
 
         public TestsBase()
         {
+/*            BasicConfigurator.Configure(new ConsoleAppender
+            {
+                Layout = new SimpleLayout()
+            });*/
+
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo("log4net.config"));
+
             AssetsFolder = "TestCases";
-            PathSegments = new Stack<string>(new [] { Directory.GetCurrentDirectory(), AssetsFolder });
+            PathSegments = new Stack<string>();
+            BuildBasePath();
         }
 
         protected string PathTo(string filename)
@@ -43,11 +56,7 @@ namespace Hanlin.Tests
         [SetUp]
         protected virtual void Setup()
         {
-            log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo("log4net.config"));
-
             AutoMock = AutoMock.GetLoose();
-
-            BuildBasePath();
         }
 
         protected virtual void ConfigureAssetsPath()
@@ -60,11 +69,27 @@ namespace Hanlin.Tests
             BuildBasePath();
         }
 
+        protected void UsePath(string path)
+        {
+            PathSegments.Clear();
+            PathSegments.Push(path);
+            BuildBasePath();
+        }
+
         private void BuildBasePath()
         {
-            BasePath = Path.Combine(PathSegments.Reverse().ToArray());
+            var parts = new List<string>(new [] { Directory.GetCurrentDirectory(), AssetsFolder });
+
+            parts.AddRange(PathSegments.Reverse());
+
+            BasePath = Path.Combine(parts.ToArray());
 
             Log.Info("Asset base path: " + BasePath);
+        }
+
+        protected static string RandomText()
+        {
+            return Guid.NewGuid().ToString();
         }
     }
 }

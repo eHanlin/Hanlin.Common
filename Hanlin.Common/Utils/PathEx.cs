@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Hanlin.Tests
+namespace Hanlin.Common.Utils
 {
     public static class PathEx
     {

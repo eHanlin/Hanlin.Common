@@ -29,11 +29,14 @@ namespace Hanlin.Common
         {
             _mapping.Add("png", png);
             _mapping.Add("mp3", mp3);
+            _mapping.Add("doc", doc);
+            _mapping.Add("docx", docx);
+            _mapping.Add("xml", application_xml);
             _mapping.Add("bin", bin);
             _mapping.Add("snappy", snappy);
         }
 
-        public static string InferContentType(string filename)
+        public static string GetContentTypeByFilename(string filename)
         {
             if (!Path.HasExtension(filename)) return null;
 
@@ -44,17 +47,7 @@ namespace Hanlin.Common
                 ext = ext.Substring(1);
             }
 
-            switch (ext)
-            {
-                case "png":
-                    return png;
-                case "snappy":
-                    return snappy;
-                case "mp3":
-                    return mp3;
-                default:
-                    return unknown;
-            }
+            return GetContentType(ext);
         }
 
         public static string GetContentType(string ext)

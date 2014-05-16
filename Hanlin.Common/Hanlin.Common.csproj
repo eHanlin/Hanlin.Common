@@ -35,6 +35,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AWSSDK">
+      <HintPath>..\..\packages\AWSSDK.2.0.14.0\lib\net45\AWSSDK.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -62,6 +65,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AWS\AmazonS3Service.cs" />
+    <Compile Include="AWS\IS3Service.cs" />
+    <Compile Include="AWS\S3CompatibleService.cs" />
+    <Compile Include="AWS\S3ConfigurationSection.cs" />
     <Compile Include="Collections\BiDictionary.cs" />
     <Compile Include="ContentType.cs" />
     <Compile Include="Data\AdoHelper.cs" />
@@ -89,6 +96,10 @@
     <Compile Include="Text\PatternRemoveFilter.cs" />
     <Compile Include="Text\StringReplaceFilter.cs" />
     <Compile Include="Utils\DisposableTimer.cs" />
+    <Compile Include="Utils\FileDescriptor.cs" />
+    <Compile Include="Utils\LogBuilder.cs" />
+    <Compile Include="Utils\PathEx.cs" />
+    <Compile Include="Utils\Workspace.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
