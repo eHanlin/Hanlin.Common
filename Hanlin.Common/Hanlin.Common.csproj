@@ -85,7 +85,6 @@
     <Compile Include="Extensions\StringBuilder.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
     <Compile Include="HanlinApplicationException.cs" />
-    <Compile Include="ImageUtils.cs" />
     <Compile Include="ProcessHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranges.cs" />
@@ -96,7 +95,9 @@
     <Compile Include="Text\PatternRemoveFilter.cs" />
     <Compile Include="Text\StringReplaceFilter.cs" />
     <Compile Include="Utils\DisposableTimer.cs" />
+    <Compile Include="Utils\EmbeddedResourceReader.cs" />
     <Compile Include="Utils\FileDescriptor.cs" />
+    <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\LogBuilder.cs" />
     <Compile Include="Utils\PathEx.cs" />
     <Compile Include="Utils\Workspace.cs" />
