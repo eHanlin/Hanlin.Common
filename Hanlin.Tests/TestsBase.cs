@@ -63,16 +63,19 @@ namespace Hanlin.Tests
         {
         }
 
-        protected void PushPath(string path)
+        protected void PushPath(params string[] segments)
         {
-            PathSegments.Push(path);
+            foreach (var path in segments)
+            {
+                PathSegments.Push(path);
+            }
             BuildBasePath();
         }
 
-        protected void UsePath(string path)
+        protected void UsePath(params string[] segments)
         {
             PathSegments.Clear();
-            PathSegments.Push(path);
+            PushPath(segments);
             BuildBasePath();
         }
 

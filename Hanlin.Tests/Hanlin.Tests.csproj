@@ -66,6 +66,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestsBase.cs" />
+    <Compile Include="TextAssert.cs" />
+    <Compile Include="TextBound.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
