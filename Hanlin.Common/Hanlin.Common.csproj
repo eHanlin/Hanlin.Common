@@ -94,12 +94,14 @@
     <Compile Include="Text\IStringFilter.cs" />
     <Compile Include="Text\PatternRemoveFilter.cs" />
     <Compile Include="Text\StringReplaceFilter.cs" />
+    <Compile Include="Utils\ContentMemoryStream.cs" />
     <Compile Include="Utils\DisposableTimer.cs" />
     <Compile Include="Utils\EmbeddedResourceReader.cs" />
     <Compile Include="Utils\FileDescriptor.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\LogBuilder.cs" />
     <Compile Include="Utils\PathEx.cs" />
+    <Compile Include="Utils\ResourceStreamTable.cs" />
     <Compile Include="Utils\Workspace.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -31,5 +31,10 @@ namespace Hanlin.Tests
             Assert.IsTrue(trimmed.StartsWith(start));
             Assert.IsTrue(trimmed.EndsWith(end));
         }
+
+        public static void Contains(string text, string substring)
+        {
+            Assert.IsTrue(text.Contains(substring));
+        }
     }
 }

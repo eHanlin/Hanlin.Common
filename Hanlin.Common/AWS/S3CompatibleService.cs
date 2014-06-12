@@ -44,6 +44,11 @@ namespace Hanlin.Common.AWS
             }
         }
 
+        public string Put(string key, byte[] bytes)
+        {
+            return Put(key, new MemoryStream(bytes)); // It's not necessary to dispose the MemoryStream as it is backed by an array.
+        }
+
         public string Put(string key, Stream inputStream)
         {
             VerifyKey(key);

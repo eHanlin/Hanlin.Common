@@ -9,7 +9,8 @@ namespace Hanlin.Common.AWS
         string BucketName { get; set; }
 
         IEnumerable<string> ListBuckets();
-        
+
+        string Put(string key, byte[] bytes);
         string Put(string key, Stream inputStream);
         void Put(string key, string path);
 
