@@ -22,9 +22,18 @@ namespace Hanlin.Common.Utils
             return output;
         }
         
-        public static string AppendToFilename(string filename, string suffix)
+        public static string AppendToFilename(string path, string suffix)
         {
-            return Path.GetFileNameWithoutExtension(filename) + suffix + Path.GetExtension(filename);
+            var dotIndex = path.LastIndexOf(".", System.StringComparison.Ordinal);
+
+            if (dotIndex == -1)
+            {
+                return path + suffix;
+            }
+            else
+            {
+                return path.Substring(0, dotIndex) + suffix + "." + path.Substring(dotIndex + 1);
+            }
         }
     }
 
