@@ -9,7 +9,7 @@ namespace Hanlin.Domain.Models
 
         protected Identity()
         {
-            Id = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid().ToString("N");
         }
 
         protected Identity(string id)
