@@ -10,6 +10,7 @@ namespace Hanlin.Common
     public static class ContentType
     {
         public const string png = "image/png";
+        public const string jpeg = "image/jpeg";
         public const string mp3 = "audio/mpeg";
         public const string bin = "application/octet-stream";
         public const string snappy = "application/gsnappy";
@@ -28,6 +29,7 @@ namespace Hanlin.Common
         static ContentType()
         {
             _mapping.Add("png", png);
+            _mapping.Add("jpeg", jpeg);
             _mapping.Add("mp3", mp3);
             _mapping.Add("doc", doc);
             _mapping.Add("docx", docx);
