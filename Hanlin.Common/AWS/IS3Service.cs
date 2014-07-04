@@ -15,5 +15,7 @@ namespace Hanlin.Common.AWS
         void Put(string key, string path);
 
         void Get(string key, Stream outputStream);
+
+        bool Exists(string key);
     }
 }

@@ -99,6 +99,32 @@ namespace Hanlin.Common.AWS
             outputStream.Position = 0; // Rewind the stream as the stream could be used again after the method returns.
         }
 
+        public bool Exists(string key)
+        {
+            var request = new GetObjectMetadataRequest
+            {
+                BucketName = BucketName,
+                Key = key,
+            };
+
+            var exists = false;
+
+            try
+            {
+                S3.GetObjectMetadata(request);
+                exists = true;
+            }
+            catch (AmazonS3Exception e)
+            {
+                if (e.ErrorCode != "NotFound")
+                {
+                    throw;
+                }
+            }
+
+            return exists;
+        }
+
         private static void VerifyKey(string key)
         {
             if (string.IsNullOrEmpty(key)) throw new ArgumentException("key is required");
