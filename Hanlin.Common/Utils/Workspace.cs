@@ -33,9 +33,9 @@ namespace Hanlin.Common.Utils
                 {
                     Directory.Delete(_path, true);
                 }
-                finally
+                catch(Exception e)
                 {
-                    Log.WarnFormat("Working directory cannot be deleted: {0}", Path);
+                    Log.Warn(e.Message, e);
                 }
             }
         }
@@ -67,6 +67,11 @@ namespace Hanlin.Common.Utils
             Directory.CreateDirectory(System.IO.Path.GetDirectoryName(destPath));
 
             return destPath;
+        }
+
+        public Workspace CreateSubWorkspace(string subWorkspaceName)
+        {
+            return new Workspace(_path, subWorkspaceName) { AutoClean = AutoClean };
         }
     }
 }
