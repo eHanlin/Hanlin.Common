@@ -6,5 +6,6 @@ namespace Hanlin.Domain.Services
     {
         Term GetCurrentTerm();
         string GetBaselineRocYear();
+        Curriculum GetCurrentCurriculum(string educationCode, string subjectCode, string headerPart41);
     }
 }
