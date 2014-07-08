@@ -4,19 +4,17 @@ using System.IO;
 
 namespace Hanlin.Common.Utils
 {
-    public class ContentMemoryStream : MemoryStream
+    public sealed class ContentMemoryStream : MemoryStream
     {
-        public static ContentMemoryStream CopyFrom(Stream stream, string contentType, string name = null)
+        public ContentMemoryStream(Stream stream, string contentType, string name = null) : this(name, contentType, (int)stream.Length)
         {
             if (stream.Length > int.MaxValue)
             {
                 throw new ArgumentException("Source stream is too large with length: " + stream.Length);
             }
 
-            var contentStream = new ContentMemoryStream(name, contentType, (int)stream.Length);
-            stream.CopyTo(contentStream);
-            contentStream.Position = 0;
-            return contentStream;
+            stream.CopyTo(this);
+            Position = 0;
         }
 
         public ContentMemoryStream(string contentType, int capacity = 0)
@@ -40,7 +38,10 @@ namespace Hanlin.Common.Utils
 
         public ContentMemoryStream Copy()
         {
-            var copy = CopyFrom(this, this.ContentType, this.Name);
+            var copy = new ContentMemoryStream(this, this.ContentType, this.Name)
+            {
+                EmbedSize = this.EmbedSize
+            };
             return copy;
         }
 
