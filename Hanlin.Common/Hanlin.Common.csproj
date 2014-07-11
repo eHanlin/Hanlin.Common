@@ -92,7 +92,6 @@
     <Compile Include="Specifications\Specifications.cs" />
     <Compile Include="Text\CompositeFilter.cs" />
     <Compile Include="Text\IStringFilter.cs" />
-    <Compile Include="Text\PatternRemoveFilter.cs" />
     <Compile Include="Text\StringReplaceFilter.cs" />
     <Compile Include="UnicodeUtil.cs" />
     <Compile Include="Utils\ContentMemoryStream.cs" />
