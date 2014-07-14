@@ -10,17 +10,17 @@ namespace Hanlin.Common.Utils
     {
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private readonly string _path;
+        private readonly string _basePath;
 
         public bool AutoClean { get; set; }
 
-        public Workspace(params string[] pathSegments)
+        public Workspace(params string[] basePath)
         {
-            if (pathSegments == null) throw new ArgumentNullException("pathSegments");
-            if (pathSegments.Length == 0) throw new ArgumentException("Path required.");
+            if (basePath == null) throw new ArgumentNullException("basePath");
+            if (basePath.Length == 0) throw new ArgumentException("Path required.");
 
-            _path = System.IO.Path.Combine(pathSegments);
-            Directory.CreateDirectory(_path);
+            _basePath = System.IO.Path.Combine(basePath);
+            Directory.CreateDirectory(_basePath);
 
             AutoClean = true;
         }
@@ -31,7 +31,7 @@ namespace Hanlin.Common.Utils
             {
                 try
                 {
-                    Directory.Delete(_path, true);
+                    Directory.Delete(_basePath, true);
                 }
                 catch(Exception e)
                 {
@@ -40,7 +40,7 @@ namespace Hanlin.Common.Utils
             }
         }
 
-        public string Path { get { return _path; } }
+        public string BasePath { get { return _basePath; } }
 
 /*        public void CreatePath(params string[] pathSegments)
         {
@@ -57,10 +57,10 @@ namespace Hanlin.Common.Utils
         {
             if (pathSegments == null || pathSegments.Length == 0)
             {
-                return Path;
+                return BasePath;
             }
             
-            var destPath = System.IO.Path.Combine(new [] { Path }.Concat(pathSegments).ToArray());
+            var destPath = System.IO.Path.Combine(new [] { BasePath }.Concat(pathSegments).ToArray());
             
             destPath = System.IO.Path.GetFullPath(destPath);
 
@@ -71,7 +71,7 @@ namespace Hanlin.Common.Utils
 
         public Workspace CreateSubWorkspace(string subWorkspaceName)
         {
-            return new Workspace(_path, subWorkspaceName) { AutoClean = AutoClean };
+            return new Workspace(_basePath, subWorkspaceName) { AutoClean = AutoClean };
         }
     }
 }
