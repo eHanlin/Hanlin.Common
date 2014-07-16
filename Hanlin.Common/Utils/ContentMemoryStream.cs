@@ -28,6 +28,7 @@ namespace Hanlin.Common.Utils
         {
             ContentType = contentType;
             Name = name ?? string.Empty;
+            EmbedSize = new Size();
         }
 
         public string Name { get; private set; }
@@ -47,7 +48,7 @@ namespace Hanlin.Common.Utils
 
         public override string ToString()
         {
-            return string.Format("Content stream: {0}, legnth {1}", ContentType, Length);
+            return string.Format("ContentMemoryStream: {0}, legnth {1}, size {2}x{3}", ContentType, Length, EmbedSize.Width, EmbedSize.Height);
         }
     }
 }

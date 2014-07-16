@@ -15,15 +15,12 @@ namespace Hanlin.Common.Utils
 
             foreach (var entry in this)
             {
-                using (entry.Value)
+                var path = Path.Combine(outputDir, entry.Key);
+                using (var output = new FileStream(path, FileMode.Create))
                 {
-                    var path = Path.Combine(outputDir, entry.Key);
-                    using (var output = new FileStream(path, FileMode.Create))
-                    {
-                        entry.Value.CopyTo(output);
-                    }
-                    outputPaths.Add(path);
+                    entry.Value.CopyTo(output);
                 }
+                outputPaths.Add(path);
             }
             return outputPaths;
         }
@@ -58,10 +55,10 @@ namespace Hanlin.Common.Utils
         {
             var builder = new StringBuilder();
 
-            builder.Append("ContentStreamTable: { ");
+            builder.Append("ResourceStreamTable: { ");
             foreach (var entry in this)
             {
-                builder.Append(string.Format("[{0}: {1}]", entry.Key, entry.Value.ContentType));
+                builder.Append(string.Format("[{0}: {1}]", entry.Key, entry.Value));
             }
             builder.Append(" }");
 
