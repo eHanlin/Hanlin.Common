@@ -9,7 +9,7 @@ using Amazon.S3.Model;
 
 namespace Hanlin.Common.AWS
 {
-    public class S3CompatibleService : IS3Service
+    public class S3CompatibleService : IS3Service, IDisposable
     {
         public string ServiceUrl { get; private set; }
         public IAmazonS3 S3 { get; private set; }
@@ -140,5 +140,13 @@ namespace Hanlin.Common.AWS
         {
             var s3Obj = S3.GetObject(new GetObjectRequest {BucketName = bucketName});
         }*/
+
+        public void Dispose()
+        {
+            if (S3 != null)
+            {
+                S3.Dispose();
+            }
+        }
     }
 }
