@@ -69,6 +69,7 @@
     <Compile Include="AWS\IS3Service.cs" />
     <Compile Include="AWS\S3CompatibleService.cs" />
     <Compile Include="AWS\S3ConfigurationSection.cs" />
+    <Compile Include="Base62.cs" />
     <Compile Include="Collections\BiDictionary.cs" />
     <Compile Include="ContentType.cs" />
     <Compile Include="Data\AdoHelper.cs" />
