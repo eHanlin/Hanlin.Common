@@ -5,23 +5,23 @@ namespace Hanlin.Domain.Models
     // Adapted from: https://github.com/VaughnVernon/IDDD_Samples_NET/blob/master/iddd_common/Domain.Model/Identity.cs
     public abstract class Identity
     {
-        public string Id { get; private set; }
+        public string Value { get; private set; }
 
         protected Identity()
         {
-            Id = Guid.NewGuid().ToString("N");
+            Value = Guid.NewGuid().ToString("N");
         }
 
         protected Identity(string id)
         {
             if (id == null) throw new ArgumentNullException("id");
 
-            Id = id;
+            Value = id;
         }
 
         protected bool Equals(Identity other)
         {
-            return string.Equals(Id, other.Id);
+            return string.Equals(Value, other.Value);
         }
 
         public override bool Equals(object obj)
@@ -34,7 +34,7 @@ namespace Hanlin.Domain.Models
 
         public override int GetHashCode()
         {
-            return Id.GetHashCode();
+            return Value.GetHashCode();
         }
 
         public static bool operator ==(Identity left, Identity right)
