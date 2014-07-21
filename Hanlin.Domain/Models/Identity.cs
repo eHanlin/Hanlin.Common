@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Hanlin.Domain.Models
 {
@@ -45,6 +46,11 @@ namespace Hanlin.Domain.Models
         public static bool operator !=(Identity left, Identity right)
         {
             return !Equals(left, right);
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString(CultureInfo.InvariantCulture);
         }
     }
 }
