@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace Hanlin.Common.Utils
 {
@@ -13,7 +14,8 @@ namespace Hanlin.Common.Utils
 
         public LogBuilder AppendLine(string text)
         {
-            _log.AppendLine(text);
+            DateTime timeNow = DateTime.Now;
+            _log.AppendLine(string.Format("{0} {1}: {2}", timeNow.ToShortDateString(), timeNow.ToShortTimeString(), text));
             return this;
         }
 
@@ -24,7 +26,7 @@ namespace Hanlin.Common.Utils
 
         public LogBuilder Paragraph(string text)
         {
-            _log.AppendLine(text);
+            AppendLine(text);
             return NewLine();
         }
 
