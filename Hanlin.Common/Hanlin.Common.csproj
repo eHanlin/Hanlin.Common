@@ -92,6 +92,7 @@
     <Compile Include="Specifications\ISpecification.cs" />
     <Compile Include="Specifications\Specifications.cs" />
     <Compile Include="Text\CompositeFilter.cs" />
+    <Compile Include="Text\FullWidthCharacter.cs" />
     <Compile Include="Text\IStringFilter.cs" />
     <Compile Include="Text\StringReplaceFilter.cs" />
     <Compile Include="UnicodeUtil.cs" />
