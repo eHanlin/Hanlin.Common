@@ -65,17 +65,6 @@ namespace Hanlin.Common.Utils
             return builder.ToString();
         }
 
-        public void Dump(string path)
-        {
-            Directory.CreateDirectory(path);
-
-            foreach (var pair in this)
-            {
-                var filename = pair.Key + "." + ContentType.GetExtension(pair.Value.ContentType);
-                File.WriteAllBytes(Path.Combine(path, filename), pair.Value.ToArray());
-            }
-        }
-
         public void Dispose()
         {
             foreach (var stream in Values)
