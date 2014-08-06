@@ -2,7 +2,19 @@ using System;
 
 namespace Hanlin.Common
 {
-	/// <summary>
+    public static class Base62Random
+    {
+        private static readonly Random _random = new Random();
+
+        public static string Next()
+        {
+            var random = _random.Next();
+            var base62 = new Base62(random);
+            return base62.ToString();
+        }
+    }
+
+    /// <summary>
     /// Source code from: http://www.sliver.com/dotnet/Base62/ by jeff.key@sliver.com
 	/// Struct whose numbering system consists of 0..9 a..z A..Z.  For example, "10" == 62.
 	/// </summary>
