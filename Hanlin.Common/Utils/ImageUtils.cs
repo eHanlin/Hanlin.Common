@@ -10,6 +10,8 @@ namespace Hanlin.Common.Utils
     {
         public static Stream Resize(Stream imageStream, int newWidth)
         {
+            if (imageStream.Length == 0) throw new ArgumentException("Input stream length cannot be zero");
+
             var srcImage = Image.FromStream(imageStream);
             var resized = srcImage.Resize(newWidth);
 
