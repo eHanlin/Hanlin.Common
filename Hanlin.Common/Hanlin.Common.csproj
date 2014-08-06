@@ -83,6 +83,7 @@
     <Compile Include="Extensions\EventHandlerExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtension.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="Extensions\SizeExtensions.cs" />
     <Compile Include="Extensions\StringBuilder.cs" />
     <Compile Include="Extensions\XmlDocumentExtensions.cs" />
     <Compile Include="HanlinApplicationException.cs" />
