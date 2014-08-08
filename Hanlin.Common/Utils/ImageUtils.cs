@@ -10,6 +10,24 @@ namespace Hanlin.Common.Utils
 {
     public class ImageUtils
     {
+        /// <summary>
+        /// Resize in-place.
+        /// </summary>
+        public static void ResizeInPlace(MemoryStream imageStream, int newWidth)
+        {
+            if (imageStream.Length == 0) throw new ArgumentException("Input stream length cannot be zero");
+            
+            var srcImage = Image.FromStream(imageStream);
+            var resized = srcImage.Resize(newWidth);
+
+            imageStream.Position = 0;
+
+            resized.Save(imageStream, ImageFormat.Png);
+
+            // Reset stream position so that the stream can be more easily used again by the caller.
+            imageStream.Position = 0;
+        }
+
         public static Stream Resize(Stream imageStream, int newWidth)
         {
             if (imageStream.Length == 0) throw new ArgumentException("Input stream length cannot be zero");
@@ -21,6 +39,16 @@ namespace Hanlin.Common.Utils
             resized.Save(stream, ImageFormat.Png);
 
             return stream;
+        }
+
+        public static void CropEmptySpaceInPlace(MemoryStream imageMemoryStream)
+        {
+            var bmp = new Bitmap(imageMemoryStream);
+            using (var cropped = CropEmptySpace(bmp))
+            {
+                imageMemoryStream.Position = 0;
+                cropped.Save(imageMemoryStream, ImageFormat.Png);
+            }
         }
 
         public static Bitmap CropEmptySpace(Stream image)
