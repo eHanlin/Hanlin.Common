@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using Hanlin.Common.Extensions;
 
 namespace Hanlin.Common.Utils
@@ -131,6 +133,33 @@ namespace Hanlin.Common.Utils
                   string.Format("Values are topmost={0} btm={1} left={2} right={3} croppedWidth={4} croppedHeight={5}", topmost, bottommost, leftmost, rightmost, croppedWidth, croppedHeight),
                   ex);
             }
+        }
+
+        public static Stream Combine(IReadOnlyCollection<MemoryStream> imageStreams)
+        {
+            if (imageStreams == null) throw new ArgumentNullException("imageStreams");
+            if (!imageStreams.Any()) throw new ArgumentException("imageStream cannot be empty.");
+
+            var images = imageStreams.Select(Image.FromStream);
+            var outputStream = new MemoryStream();
+
+            using (var combinedImage = images.Aggregate((image1, image2) =>
+            {
+                try
+                {
+                    return image1.Combine(image2, 0);
+                }
+                finally
+                {
+                    image1.Dispose();
+                    image2.Dispose();
+                }
+            }))
+            {
+                combinedImage.Save(outputStream, ImageFormat.Png);
+            }
+
+            return outputStream;
         }
     }
 }

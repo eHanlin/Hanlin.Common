@@ -39,29 +39,23 @@ namespace Hanlin.Common.Extensions
         }
 
         // Reference: http://stackoverflow.com/a/465199
-        public static Stream Combine(this Image topImg, Image bottomImg)
+        public static Image Combine(this Image topImg, Image bottomImg, int spacingPixels = 10)
         {
-            const int margin = 20; // in pixels
-
             var newSize = new Size
             {
                 Width = topImg.Width,
-                Height = topImg.Height + bottomImg.Height + margin
+                Height = topImg.Height + bottomImg.Height + spacingPixels
             };
 
-            var returnStream = new MemoryStream();
-            using (var bitmap = new Bitmap(newSize.Width, newSize.Height))
+            var bitmap = new Bitmap(newSize.Width, newSize.Height);
+            using (var canvas = Graphics.FromImage(bitmap))
             {
-                using (var canvas = Graphics.FromImage(bitmap))
-                {
-                    canvas.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    canvas.DrawImage(topImg, 0, 0);
-                    canvas.DrawImage(bottomImg, 0, topImg.Height + margin);
-                    canvas.Save();
-                }
-                bitmap.Save(returnStream, ImageFormat.Png);
+                canvas.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                canvas.DrawImage(topImg, 0, 0);
+                canvas.DrawImage(bottomImg, 0, topImg.Height + spacingPixels);
+                canvas.Save();
             }
-            return returnStream;
+            return bitmap;
         }
     }
 }
