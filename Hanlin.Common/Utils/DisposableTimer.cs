@@ -44,6 +44,8 @@ namespace Hanlin.Common.Utils
             timer.Start();
         }
 
+        public long Elapsed { get { return timer.ElapsedMilliseconds; } }
+
         private void SaveIndentLevel()
         {
             currentIndent = DisposableTimer.IndentLevel;
@@ -54,7 +56,7 @@ namespace Hanlin.Common.Utils
         {
             timer.Stop();
             TimeSpan elapsed = timer.Elapsed;
-            LogIndented(string.Format("[{0:D2}m {1:D2}s {2:D3}ms]", elapsed.Minutes, elapsed.Seconds, elapsed.Milliseconds));
+            LogIndented(string.Format("{0} took [{1:D2}m {2:D2}s {3:D3}ms]", Task, elapsed.Minutes, elapsed.Seconds, elapsed.Milliseconds));
             IndentLevel--;
         }
 
