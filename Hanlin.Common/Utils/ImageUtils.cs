@@ -171,20 +171,28 @@ namespace Hanlin.Common.Utils
             var images = imageStreams.Select(Image.FromStream);
             var outputStream = new MemoryStream();
 
-            using (var combinedImage = images.Aggregate((image1, image2) =>
+            // Handle the case where only one image stream is provided.
+            if (imageStreams.Count == 1)
             {
-                try
-                {
-                    return image1.Combine(image2, 0);
-                }
-                finally
-                {
-                    image1.Dispose();
-                    image2.Dispose();
-                }
-            }))
+                imageStreams.First().CopyTo(outputStream);
+            }
+            else
             {
-                combinedImage.Save(outputStream, ImageFormat.Png);
+                using (var combinedImage = images.Aggregate((image1, image2) =>
+                {
+                    try
+                    {
+                        return image1.Combine(image2, 0);
+                    }
+                    finally
+                    {
+                        image1.Dispose();
+                        image2.Dispose();
+                    }
+                }))
+                {
+                    combinedImage.Save(outputStream, ImageFormat.Png);
+                }
             }
 
             return outputStream;
