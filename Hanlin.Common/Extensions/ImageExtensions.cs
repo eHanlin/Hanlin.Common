@@ -13,12 +13,17 @@ namespace Hanlin.Common.Extensions
     {
         public static Image Resize(this Image srcImage, int newWidth, int minHeight = 0)
         {
+            if (newWidth == 0) throw new ArgumentException("newWidth cannot be zero.");
+
             var ratio = (double) newWidth / srcImage.Size.Width;
 
             var newHeight = (int) (srcImage.Height*ratio);
 
             var canvasWidth = newWidth; // This method only support resize by width at the moment.
             var canvasHeight = Math.Max(newHeight, minHeight);
+
+            if (canvasWidth == 0) canvasWidth = 1;
+            if (canvasHeight == 0) canvasHeight = 1;
 
             // Resizing code from: http://stackoverflow.com/a/87786/494297
             var newImage = new Bitmap(canvasWidth, canvasHeight);
