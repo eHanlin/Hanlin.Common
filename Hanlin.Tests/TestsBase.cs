@@ -47,15 +47,11 @@ namespace Hanlin.Tests
             return Path.Combine(BasePath, PathEx.AppendToPath(filename, "_output"));
         }
 
-        [TestFixtureSetUp]
-        protected virtual void FixtureSetup()
-        {
-            ConfigureAssetsPath();
-        }
-
         [SetUp]
         protected virtual void Setup()
         {
+            ConfigureAssetsPath();
+
             AutoMock = AutoMock.GetLoose();
         }
 
