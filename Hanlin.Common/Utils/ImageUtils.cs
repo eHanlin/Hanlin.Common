@@ -13,30 +13,43 @@ namespace Hanlin.Common.Utils
         /// <summary>
         /// Resize in-place.
         /// </summary>
-        public static void ResizeInPlace(MemoryStream imageStream, int newWidth)
+        public static void ShrinkInPlace(MemoryStream imageStream, int newWidth)
         {
             if (imageStream.Length == 0) throw new ArgumentException("Input stream length cannot be zero");
             
             var srcImage = Image.FromStream(imageStream);
-            var resized = srcImage.Resize(newWidth);
 
-            imageStream.Position = 0;
+            if (srcImage.Width > newWidth)
+            {
+                var resized = srcImage.Resize(newWidth);
 
-            resized.Save(imageStream, ImageFormat.Png);
+                imageStream.Position = 0;
+
+                resized.Save(imageStream, ImageFormat.Png);
+            }
 
             // Reset stream position so that the stream can be more easily used again by the caller.
             imageStream.Position = 0;
         }
 
-        public static Stream Resize(Stream imageStream, int newWidth)
+        public static Stream Shrink(Stream imageStream, int newWidth)
         {
             if (imageStream.Length == 0) throw new ArgumentException("Input stream length cannot be zero");
 
-            var srcImage = Image.FromStream(imageStream);
-            var resized = srcImage.Resize(newWidth);
-
             var stream = new MemoryStream();
-            resized.Save(stream, ImageFormat.Png);
+
+            var srcImage = Image.FromStream(imageStream);
+
+            if (srcImage.Width > newWidth)
+            {
+                var resized = srcImage.Resize(newWidth);
+                resized.Save(stream, ImageFormat.Png);
+            }
+            else
+            {
+                imageStream.Position = 0;
+                imageStream.CopyTo(stream);
+            }
 
             return stream;
         }
