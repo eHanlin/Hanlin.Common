@@ -67,6 +67,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayEx.cs" />
     <Compile Include="AWS\AmazonS3Service.cs" />
     <Compile Include="AWS\IS3Service.cs" />
     <Compile Include="AWS\S3CompatibleService.cs" />
