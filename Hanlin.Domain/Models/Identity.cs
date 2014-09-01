@@ -6,7 +6,7 @@ namespace Hanlin.Domain.Models
     // Adapted from: https://github.com/VaughnVernon/IDDD_Samples_NET/blob/master/iddd_common/Domain.Model/Identity.cs
     public abstract class Identity
     {
-        public string Value { get; private set; }
+        public string Value { get; protected set; }
 
         protected Identity()
         {
