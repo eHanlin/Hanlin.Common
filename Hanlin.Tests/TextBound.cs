@@ -17,13 +17,19 @@ namespace Hanlin.Tests
         {
             var split = bounds.Split(BoundSeparator);
             
-            if (split.Count() != 2)
+            Start = split[0];
+
+            var count = split.Count();
+            
+            if (count > 2)
             {
                 throw new ArgumentException(string.Format("Invalid bounds format: {0}. Expect: {1}", bounds, "<start>" + BoundSeparator + "<end>"));
             }
 
-            Start = split[0];
-            End = split[1];
+            if (count > 1)
+            {
+                End = split[1];
+            }
         }
     }
 }

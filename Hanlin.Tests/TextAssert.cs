@@ -28,8 +28,22 @@ namespace Hanlin.Tests
         {
             var trimmed = text.Trim();
             Assert.IsNotNull(trimmed);
-            Assert.IsTrue(trimmed.StartsWith(start));
-            Assert.IsTrue(trimmed.EndsWith(end));
+
+            if (start == null && end == null) throw new ArgumentException("start and end cannot both be null");
+
+            if (start == null)
+            {
+                Assert.AreEqual(trimmed, end);
+            }
+            else if (end == null)
+            {
+                Assert.AreEqual(trimmed, start);
+            }
+            else
+            {
+                Assert.IsTrue(trimmed.StartsWith(start));
+                Assert.IsTrue(trimmed.EndsWith(end));
+            }
         }
 
         public static void Contains(string text, string substring)
