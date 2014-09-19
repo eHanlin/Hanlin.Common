@@ -9,6 +9,11 @@ namespace Hanlin.Domain.Models
             Value = id;
         }
 
+        protected GenericValueObject()
+        {
+            
+        }
+
         public T Value { get; protected set; }
 
         protected override IEnumerable<object> GetEqualityComponents()
