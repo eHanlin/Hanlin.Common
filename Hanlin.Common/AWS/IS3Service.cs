@@ -17,5 +17,8 @@ namespace Hanlin.Common.AWS
         void Get(string key, Stream outputStream);
 
         bool Exists(string key);
+
+        void Delete(string key);
+        void Delete(string[] keys);
     }
 }

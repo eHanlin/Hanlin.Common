@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
+using log4net;
 
 namespace Hanlin.Common.AWS
 {
     public class S3CompatibleService : IS3Service, IDisposable
     {
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public string ServiceUrl { get; private set; }
         public IAmazonS3 S3 { get; private set; }
 
@@ -123,6 +127,39 @@ namespace Hanlin.Common.AWS
             }
 
             return exists;
+        }
+
+        public void Delete(string key)
+        {
+            Delete(new [] { key });
+        }
+
+        public void Delete(string[] keys)
+        {
+            var request = new DeleteObjectsRequest
+            {
+                BucketName = BucketName,
+                Quiet = true,
+                Objects = keys.Select(k => new KeyVersion {Key = k}).ToList()
+            };
+
+            try
+            {
+                S3.DeleteObjects(request);
+            }
+            catch (DeleteObjectsException doe)
+            {
+                // From http://docs.aws.amazon.com/sdkfornet/latest/apidocs/items/TS3DeleteObjectsRequest_NET4_5.html
+                var errorResponse = doe.Response;
+                foreach (var deleteError in errorResponse.DeleteErrors)
+                {
+                    Log.Error("Error deleting item " + deleteError.Key);
+                    Log.Error(" Code - " + deleteError.Code);
+                    Log.Error(" Message - " + deleteError.Message);
+                }
+
+                throw;
+            }
         }
 
         private static void VerifyKey(string key)
