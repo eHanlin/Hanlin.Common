@@ -74,6 +74,7 @@
     <Compile Include="AWS\S3ConfigurationSection.cs" />
     <Compile Include="Base62.cs" />
     <Compile Include="Collections\BiDictionary.cs" />
+    <Compile Include="Comparers\AlphanumComparatorFast.cs" />
     <Compile Include="ContentType.cs" />
     <Compile Include="Data\AdoHelper.cs" />
     <Compile Include="Enums\Enumeration.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Utils\FileDescriptor.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\LogBuilder.cs" />
+    <Compile Include="Utils\ObjectCopier.cs" />
     <Compile Include="Utils\PathEx.cs" />
     <Compile Include="Utils\ResourceStreamTable.cs" />
     <Compile Include="Utils\Workspace.cs" />
