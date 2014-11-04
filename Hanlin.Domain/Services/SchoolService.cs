@@ -37,7 +37,7 @@ namespace Hanlin.Domain.Services
             {
                 switch (subjectCode)
                 {
-                    case SharedSubjectCode.數學:
+                    case StandardSubjectCode.數學:
                         switch (header41Numeric)
                         {
                             case 1:
@@ -47,8 +47,8 @@ namespace Hanlin.Domain.Services
                                 return Curriculum.高中99課綱;
                         }
                         break;
-                    case SharedSubjectCode.物理:
-                    case SharedSubjectCode.化學:
+                    case StandardSubjectCode.物理:
+                    case StandardSubjectCode.化學:
                         switch (header41Numeric)
                         {
                             case 1:
@@ -58,7 +58,7 @@ namespace Hanlin.Domain.Services
                         }
                         break;
                     default:
-                        return Curriculum.高中103課綱;
+                        return Curriculum.高中99課綱;
                 }
             }
 
