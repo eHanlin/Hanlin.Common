@@ -22,6 +22,9 @@ namespace Hanlin.Common
         public const string doc = "application/msword";
         public const string docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
+        public const string xls = "application/vnd.ms-excel";
+        public const string xlsx = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
 
         public const string unknown = "application/unknown";
 
