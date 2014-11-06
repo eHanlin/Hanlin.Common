@@ -59,6 +59,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,6 +78,7 @@
     <Compile Include="Comparers\AlphanumComparatorFast.cs" />
     <Compile Include="ContentType.cs" />
     <Compile Include="Data\AdoHelper.cs" />
+    <Compile Include="DiffMatchPatch.cs" />
     <Compile Include="Enums\Enumeration.cs" />
     <Compile Include="Enums\EnumExceptionHelper.cs" />
     <Compile Include="Enums\EnumHelper.cs" />
