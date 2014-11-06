@@ -16,4 +16,20 @@ namespace Hanlin.Common.Utils
             ContentType = contentType;
         }
     }
+
+    public class FileContentDescriptor : FileDescriptor
+    {
+        public FileContentDescriptor(string name, string contentType, byte[] bytes) : base(name, contentType)
+        {
+            Bytes = bytes;
+        }
+
+        public FileContentDescriptor(string filename, byte[] bytes)
+            : base(filename, Hanlin.Common.ContentType.GetContentTypeByFilename(filename))
+        {
+            Bytes = bytes;
+        }
+
+        public Byte[] Bytes { get; set; }
+    }
 }
