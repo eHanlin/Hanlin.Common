@@ -51,14 +51,15 @@
     <Compile Include="Models\TextVersion.cs" />
     <Compile Include="Models\ValueObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ISchoolService.cs" />
-    <Compile Include="Services\SchoolService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hanlin.Common\Hanlin.Common.csproj">
       <Project>{D00519B7-4086-48A4-844D-157BEDC5D14F}</Project>
       <Name>Hanlin.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
