@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -170,7 +170,7 @@ namespace Hanlin.Common.AWS
 
         public IEnumerable<string> ListBuckets()
         {
-            return S3.ListBuckets().Buckets.Select(bucket => bucket.BucketName).ToList();
+            return Enumerable.ToList<string>(S3.ListBuckets().Buckets.Select(bucket => bucket.BucketName));
         }
 
 /*        public IEnumerable<string> ListBucket(string bucketName)

@@ -1,4 +1,4 @@
-﻿namespace Hanlin.Common.AWS
+namespace Hanlin.Common.AWS
 {
     public class AmazonS3Service : S3CompatibleService
     {

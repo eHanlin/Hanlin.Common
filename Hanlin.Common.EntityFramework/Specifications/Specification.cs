@@ -1,14 +1,9 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 using LinqKit;
 
-namespace Hanlin.Common.Specifications
+namespace Hanlin.Common.EntityFramework.Specifications
 {
-    public interface ISpecification<T>
-    {
-        Expression<Func<T, bool>> GetPredicate();
-    }
-
     public abstract class Specification<T> : ISpecification<T>
     {
         public Expression<Func<T, bool>> GetPredicateExpanded()

@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4807CD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanlin.Program", "Hanlin.Program\Hanlin.Program.csproj", "{C3166A0F-4758-43D5-B4F6-668795AB9604}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanlin.Common.EntityFramework", "Hanlin.Common.EntityFramework\Hanlin.Common.EntityFramework.csproj", "{6F74B755-C7F3-486D-AB08-75BCF7DAC1C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanlin.Common.AWS", "Hanlin.Common.AWS\Hanlin.Common.AWS.csproj", "{C75A6738-1301-4718-8F2C-39CA5C9B6427}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,14 @@ Global
 		{C3166A0F-4758-43D5-B4F6-668795AB9604}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3166A0F-4758-43D5-B4F6-668795AB9604}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3166A0F-4758-43D5-B4F6-668795AB9604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F74B755-C7F3-486D-AB08-75BCF7DAC1C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F74B755-C7F3-486D-AB08-75BCF7DAC1C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F74B755-C7F3-486D-AB08-75BCF7DAC1C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F74B755-C7F3-486D-AB08-75BCF7DAC1C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C75A6738-1301-4718-8F2C-39CA5C9B6427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C75A6738-1301-4718-8F2C-39CA5C9B6427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C75A6738-1301-4718-8F2C-39CA5C9B6427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C75A6738-1301-4718-8F2C-39CA5C9B6427}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

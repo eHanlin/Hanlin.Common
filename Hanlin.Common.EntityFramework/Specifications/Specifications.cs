@@ -1,8 +1,9 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using LinqKit;
 
-namespace Hanlin.Common.Specifications
+namespace Hanlin.Common.EntityFramework.Specifications
 {
     public class FalseSpecification<T> : ISpecification<T>
     {
@@ -32,7 +33,7 @@ namespace Hanlin.Common.Specifications
         public Expression<Func<T, bool>> GetPredicate()
         {
             var operandExpr = _operand.GetPredicate();
-            var innerInvocation = Expression.Invoke(operandExpr, operandExpr.Parameters);
+            var innerInvocation = Expression.Invoke((Expression) operandExpr, (IEnumerable<Expression>) operandExpr.Parameters);
 
             var notExpr = Expression.Lambda<Func<T, bool>>(Expression.Not(innerInvocation), operandExpr.Parameters);
             return notExpr;
