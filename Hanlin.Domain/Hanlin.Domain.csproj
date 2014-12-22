@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\LongIdValueObject.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\GenericValueObject.cs" />
