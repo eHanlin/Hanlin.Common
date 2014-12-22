@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\IPage.cs" />
+    <Compile Include="Application\Page.cs" />
+    <Compile Include="Application\Pageable.cs" />
+    <Compile Include="Application\PageableCommand.cs" />
     <Compile Include="Models\LongIdValueObject.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Entity.cs" />
