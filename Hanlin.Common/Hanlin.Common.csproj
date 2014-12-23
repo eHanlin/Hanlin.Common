@@ -56,6 +56,7 @@
     <Compile Include="Base62.cs" />
     <Compile Include="Collections\BiDictionary.cs" />
     <Compile Include="Comparers\AlphanumComparatorFast.cs" />
+    <Compile Include="Configuration\DatabaseConfigurationSection.cs" />
     <Compile Include="ContentType.cs" />
     <Compile Include="Data\AdoHelper.cs" />
     <Compile Include="DiffMatchPatch.cs" />
