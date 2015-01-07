@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanlin.Common", "Hanlin.Common\Hanlin.Common.csproj", "{D00519B7-4086-48A4-844D-157BEDC5D14F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanlin.Common.Windows", "Hanlin.Common.Windows\Hanlin.Common.Windows.csproj", "{D8E47BE2-A20E-4DE4-BA1E-60EB46A85795}"
@@ -19,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanlin.Common.EntityFramework", "Hanlin.Common.EntityFramework\Hanlin.Common.EntityFramework.csproj", "{6F74B755-C7F3-486D-AB08-75BCF7DAC1C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanlin.Common.AWS", "Hanlin.Common.AWS\Hanlin.Common.AWS.csproj", "{C75A6738-1301-4718-8F2C-39CA5C9B6427}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hanlin.Common.Tests", "Hanlin.Common.Tests\Hanlin.Common.Tests.csproj", "{536056BF-7ACF-4536-96DB-B81B0B338EA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +54,10 @@ Global
 		{C75A6738-1301-4718-8F2C-39CA5C9B6427}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C75A6738-1301-4718-8F2C-39CA5C9B6427}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C75A6738-1301-4718-8F2C-39CA5C9B6427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{536056BF-7ACF-4536-96DB-B81B0B338EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{536056BF-7ACF-4536-96DB-B81B0B338EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{536056BF-7ACF-4536-96DB-B81B0B338EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{536056BF-7ACF-4536-96DB-B81B0B338EA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

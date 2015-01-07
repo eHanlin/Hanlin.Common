@@ -9,9 +9,9 @@ namespace Hanlin.Common.Tests.Extensions
 {
     public class ImageExtensionTests : TestsBase
     {
-        protected override void ConfigureAssetsPath()
+        public ImageExtensionTests()
         {
-            PushPath("Images");
+            UsePath("Images");
         }
 
         [TestCase("LessThanMinHeight.png")]

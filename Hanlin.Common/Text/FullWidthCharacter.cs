@@ -33,25 +33,47 @@ namespace Hanlin.Common.Text
         {
             if (wchar >= Full0 && wchar <= Full9)
             {
-                return (char)(wchar - Full0 + '0');
+                return (char)(wchar - Full0 + Half0);
             }
 
             if (wchar >= FullA && wchar <= FullZ)
             {
-                return (char)(wchar - FullA + 'A');
-            }
-
-            if (wchar >= FullA && wchar <= FullZ)
-            {
-                return (char)(wchar - FullA + 'A');
+                return (char)(wchar - FullA + HalfA);
             }
 
             if (wchar >= Fulla && wchar <= Fullz)
             {
-                return (char)(wchar - Fulla + 'a');
+                return (char)(wchar - Fulla + Halfa);
             }
 
             return wchar;
+        }
+
+        public static string ToFullWidth(string text)
+        {
+            if (text == null) return null;
+
+            return string.Join(string.Empty, text.Select(ToFullWidth));
+        }
+
+        public static char ToFullWidth(char hchar)
+        {
+            if (hchar >= Half0 && hchar <= Half9)
+            {
+                return (char)(hchar - Half0 + Full0);
+            }
+
+            if (hchar >= HalfA && hchar <= HalfZ)
+            {
+                return (char)(hchar - HalfA + FullA);
+            }
+
+            if (hchar >= Halfa && hchar <= Halfz)
+            {
+                return (char)(hchar - Halfa + Fulla);
+            }
+
+            return hchar;
         }
     }
 }
