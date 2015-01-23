@@ -56,9 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparers\AlphanumComparatorFastTests.cs" />
     <Compile Include="Extensions\IEnumerableExtensionTests.cs" />
     <Compile Include="Extensions\ImageExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Text\ChineseNumeralsTests.cs" />
     <Compile Include="Text\FullWidthCharacterTests.cs" />
     <Compile Include="Utils\ContentMemoryStreamTests.cs" />
   </ItemGroup>
