@@ -12,7 +12,7 @@ namespace Hanlin.Common.Text
     /// </summary>
     public class ChineseNumerals
     {
-        public static readonly IReadOnlyCollection<char> ChineseDigits = new[]
+        public static readonly IReadOnlyCollection<char> NormalChineseNumerals = new[]
         {
             '零',
             '一',
@@ -115,7 +115,7 @@ namespace Hanlin.Common.Text
 
         public static bool IsChineseNumeral(char ch)
         {
-            return ChineseDigits.Contains(ch);
+            return NormalChineseNumerals.Contains(ch);
         }
 
         public static char ConvertToArabicNumerals(char chineseDigit)

@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comparers\AlphanumComparatorFastTests.cs" />
+    <Compile Include="Comparers\ChineseNumerialsComparatorTests.cs" />
     <Compile Include="Extensions\IEnumerableExtensionTests.cs" />
     <Compile Include="Extensions\ImageExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
