@@ -16,6 +16,7 @@ namespace Hanlin.Common
         public const string snappy = "application/gsnappy";
 
         public const string text_plain = "text/plain";
+        public const string text_html = "text/html";
         public const string text_xml = "text/xml";
         public const string application_xml = "application/xml";
 
