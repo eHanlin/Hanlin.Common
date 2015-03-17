@@ -39,6 +39,7 @@ namespace Hanlin.Common
             _mapping.Add("doc", doc);
             _mapping.Add("docx", docx);
             _mapping.Add("xml", application_xml);
+            _mapping.Add("html", text_html);
             _mapping.Add("bin", bin);
             _mapping.Add("snappy", snappy);
         }
