@@ -21,11 +21,15 @@ namespace Hanlin.Common.AWS
         public string ServiceName { get; set; }
         public string BucketName { get; set; }
 
+        public string BucketUrl { get; private set; }
+
         public S3CompatibleService(string endpoint, string accessKey, string secretKey, string bucket)
         {
             ServiceUrl = endpoint;
             ServiceName = "Hicloud";
+
             BucketName = bucket;
+            BucketUrl = string.Format("https://{0}.s3.amazonaws.com/", BucketName);
 
             if (ServiceUrl != null)
             {
@@ -57,6 +61,8 @@ namespace Hanlin.Common.AWS
         {
             VerifyKey(key);
 
+            key = ConvertKey(key);
+
             // Setting stream position is not necessary for AWS API 
             // but we are bing explicit to demostrate that the position does matter depending on the underlying API.
             // For example, GridFs API does require position to be at zero!
@@ -78,16 +84,27 @@ namespace Hanlin.Common.AWS
 
             if (response.HttpStatusCode == HttpStatusCode.OK)
             {
-                return "https://s3-ap-southeast-1.amazonaws.com/" + BucketName + "/" + key;
+                return BucketUrl + key;
             }
 
 
             return string.Empty;
         }
 
+        private string ConvertKey(string key)
+        {
+            if (key.StartsWith(BucketUrl))
+            {
+                key = key.Replace(BucketUrl, string.Empty);
+            }
+
+            return key;
+        }
+
         public void Get(string key, Stream outputStream)
         {
             VerifyKey(key);
+            key = ConvertKey(key);
 
             var request = new GetObjectRequest
             {
@@ -105,6 +122,9 @@ namespace Hanlin.Common.AWS
 
         public bool Exists(string key)
         {
+            VerifyKey(key);
+            key = ConvertKey(key);
+
             var request = new GetObjectMetadataRequest
             {
                 BucketName = BucketName,
@@ -140,7 +160,7 @@ namespace Hanlin.Common.AWS
             {
                 BucketName = BucketName,
                 Quiet = true,
-                Objects = keys.Select(k => new KeyVersion {Key = k}).ToList()
+                Objects = keys.Select(k => new KeyVersion { Key = ConvertKey(k) }).ToList()
             };
 
             try
