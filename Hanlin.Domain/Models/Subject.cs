@@ -23,6 +23,7 @@ namespace Hanlin.Domain.Models
         public const string 歷史 = "hi";
         public const string 地理 = "ge";
         public const string 公民 = "cs";
+        public const string 高中英文 = "he";//add 2015/7/9 by Kevin.
     }
 
     public class Subject : Enumeration<string>
@@ -45,6 +46,7 @@ namespace Hanlin.Domain.Models
         public static readonly Subject 地理 = new Subject(StandardSubjectCode.地理, "地理", "社會", 480, new[] { Education.國中, Education.高中 });
         public static readonly Subject 公民 = new Subject(StandardSubjectCode.公民, "公民", "社會", 490, new[] { Education.國中, Education.高中 });
 
+        public static readonly Subject 高中英文 = new Subject(StandardSubjectCode.高中英文, "高中英文", "高中英文", 500, new[] { Education.高中 });//add 2015/7/9 by Kevin.
         /* 領域 */
         public static readonly Subject 自然與生活科技 = new Subject(StandardSubjectCode.自然, "自然與生活科技", "自生", 300, new Education[0]);
         public static readonly Subject 社會 = new Subject(StandardSubjectCode.社會, "社會", "社會", 400, new Education[0]);
