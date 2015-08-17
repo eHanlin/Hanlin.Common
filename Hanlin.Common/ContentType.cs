@@ -10,6 +10,8 @@ namespace Hanlin.Common
     public static class ContentType
     {
         public const string png = "image/png";
+        public const string wmf = "image/x-wmf";
+        public const string emf = "image/x-emf";
         public const string jpeg = "image/jpeg";
         public const string mp3 = "audio/mpeg";
         public const string bin = "application/octet-stream";
@@ -44,6 +46,8 @@ namespace Hanlin.Common
             _mapping.Add("html", text_html);
             _mapping.Add("bin", bin);
             _mapping.Add("snappy", snappy);
+            _mapping.Add("wmf", wmf);
+            _mapping.Add("emf", emf);
         }
 
         public static string GetContentTypeByFilename(string filename)
