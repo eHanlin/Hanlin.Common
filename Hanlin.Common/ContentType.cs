@@ -38,6 +38,8 @@ namespace Hanlin.Common
             _mapping.Add("mp3", mp3);
             _mapping.Add("doc", doc);
             _mapping.Add("docx", docx);
+            _mapping.Add("xls", xls);
+            _mapping.Add("xlsx", xlsx);
             _mapping.Add("xml", application_xml);
             _mapping.Add("html", text_html);
             _mapping.Add("bin", bin);
