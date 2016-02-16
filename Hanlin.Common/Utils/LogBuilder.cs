@@ -12,6 +12,12 @@ namespace Hanlin.Common.Utils
             return Paragraph(header);
         }
 
+        public LogBuilder Paragraph(string text)
+        {
+            AppendLine(text);
+            return NewLine();
+        }
+
         public LogBuilder AppendLine(string text)
         {
             DateTime timeNow = DateTime.Now;
@@ -19,15 +25,18 @@ namespace Hanlin.Common.Utils
             return this;
         }
 
-        public void AppendLineFormat(string format, params object[] args)
+        public LogBuilder AppendLineFormat(string format, params object[] args)
         {
             AppendLine(string.Format(format, args));
+
+            return this;
         }
 
-        public LogBuilder Paragraph(string text)
+        public LogBuilder Append(string text)
         {
-            AppendLine(text);
-            return NewLine();
+            _log.Append(text);
+
+            return this;
         }
 
         public LogBuilder NewLine()
