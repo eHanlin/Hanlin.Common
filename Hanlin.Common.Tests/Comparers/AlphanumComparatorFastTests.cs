@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hanlin.Common.Comparers;
+﻿using Hanlin.Common.Comparers;
 using NUnit.Framework;
 
 namespace Hanlin.Common.Tests.Comparers
@@ -11,6 +6,8 @@ namespace Hanlin.Common.Tests.Comparers
     class AlphanumComparatorFastTests
     {
         [TestCase("4-2", "4-10", 1)]
+        [TestCase("95813-24-5-9-34", "95813-24-5-10-4", 1)]
+        [TestCase("95813-24-5-10-4", "95813-24-5-10-34", 1)]
         public void XLessThanY(string x, string y, int expected)
         {
             Assert.Less(AlphanumComparatorFast.Instance.Compare(x, y), 0);
