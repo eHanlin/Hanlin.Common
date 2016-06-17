@@ -36,4 +36,12 @@ namespace Hanlin.Common.Text
             Remove("\r\n\r\n");
         }
     }
+
+    public class HtmlReplaceFilter : StringReplaceFilter
+    {
+        public HtmlReplaceFilter()
+        {
+            Remove(@"<[^>]+>|&nbsp;");
+        }
+    }
 }
