@@ -20,5 +20,7 @@ namespace Hanlin.Common.AWS
 
         void Delete(string key);
         void Delete(string[] keys);
+
+        string BuildUrl(string key);
     }
 }

@@ -44,6 +44,13 @@ namespace Hanlin.Common.AWS
             }
         }
 
+        public string BuildUrl(string key)
+        {
+            if (key.StartsWith("http")) return key;
+
+            return BucketUrl + key;
+        }
+
         public void Put(string key, string path)
         {
             using (var stream = new FileStream(path, FileMode.Open))

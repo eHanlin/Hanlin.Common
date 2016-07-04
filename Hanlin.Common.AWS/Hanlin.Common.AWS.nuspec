@@ -11,8 +11,8 @@
     <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial version.</releaseNotes>
+    <releaseNotes>Added IS3Service.BuildUrl</releaseNotes>
     <copyright>Copyright 2014</copyright>
-    <tags>common aws api</tags>  
+    <tags>common aws s3 api</tags>  
   </metadata>
 </package>
