@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Hanlin.Common.Text;
 
 namespace Hanlin.Common.Comparers
 {
@@ -11,6 +12,14 @@ namespace Hanlin.Common.Comparers
         public static readonly AlphanumComparatorFast Instance = new AlphanumComparatorFast();
 
         public int Compare(string x, string y)
+        {
+            var xHalf = FullWidthCharacter.ToHalfWidth(x);
+            var yHalf = FullWidthCharacter.ToHalfWidth(y);
+
+            return CompareInternal(xHalf, yHalf);
+        }
+
+        private int CompareInternal(string x, string y)
         {
             if (x == null)
             {
