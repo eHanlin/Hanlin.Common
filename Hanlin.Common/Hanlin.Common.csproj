@@ -104,6 +104,7 @@
     <Compile Include="Utils\LogBuilder.cs" />
     <Compile Include="Utils\ObjectCopier.cs" />
     <Compile Include="Utils\PathEx.cs" />
+    <Compile Include="Utils\ReflectionUtils.cs" />
     <Compile Include="Utils\ResourceStreamTable.cs" />
     <Compile Include="Utils\Workspace.cs" />
   </ItemGroup>
