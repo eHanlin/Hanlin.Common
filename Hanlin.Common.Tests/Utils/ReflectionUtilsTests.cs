@@ -48,5 +48,11 @@ namespace Hanlin.Common.Tests.Utils
             Assert.AreEqual(true, fieldNames.Contains("ValidationUnit"));
             Assert.AreEqual(1, fieldNames.Count());
         }
+
+        [TestCase]
+        public void MemberName()
+        {
+            Assert.AreEqual(ReflectionUtils.GetMemberName((Company c) => c.ValidationUnit), "ValidationUnit");
+        }
     }
 }

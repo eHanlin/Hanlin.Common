@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Hanlin.Common.Utils
@@ -48,6 +49,11 @@ namespace Hanlin.Common.Utils
         public static IEnumerable<string> GetFieldNames(object instance, bool isFirstUpperCase = false, bool isFirstLowerCase = false)
         {
             return instance.GetType().GetFields().Select(s => GetFieldName(s.Name, isFirstUpperCase, isFirstLowerCase));
+        }
+
+        public static string GetMemberName<T, TValue>(Expression<Func<T, TValue>> memberAccess)
+        {
+            return ((MemberExpression)memberAccess.Body).Member.Name;
         }
     }
 }
