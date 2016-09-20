@@ -16,7 +16,7 @@ namespace Hanlin.Common.Utils
             return client;
         }
 
-        private static T BuildJsonQuery<T>(string url, object request, Func<HttpClient, StringContent, HttpResponseMessage> exec)
+        private static string BuildJsonQuery(object request, Func<HttpClient, StringContent, HttpResponseMessage> exec)
         {
             var requestJson = JsonConvert.SerializeObject(request);
             var client = BuildJsonClient();
@@ -26,28 +26,42 @@ namespace Hanlin.Common.Utils
 
             response.EnsureSuccessStatusCode();
 
-            var respJson = response.Content.ReadAsStringAsync().Result;
-
-            return JsonConvert.DeserializeObject<T>(respJson);
+            return response.Content.ReadAsStringAsync().Result;
         }
 
-        public static T GetJson<T>(string url)
+        public static string Get(string url)
         {
             var client = BuildJsonClient();
             var response = client.GetAsync(url).Result;
             response.EnsureSuccessStatusCode();
-            var respJson = response.Content.ReadAsStringAsync().Result;
-            return JsonConvert.DeserializeObject<T>(respJson);
+            return response.Content.ReadAsStringAsync().Result;
+        }
+
+        public static T GetJson<T>(string url)
+        {
+            return JsonConvert.DeserializeObject<T>(Get(url));
+        }
+
+        public static string PostJson(string url, object request)
+        {
+            return BuildJsonQuery(request, (client, httpContent) => client.PostAsync(url, httpContent).Result);
         }
 
         public static T PostJson<T>(string url, object request)
         {
-            return BuildJsonQuery<T>(url, request, (client, httpContent) => client.PostAsync(url, httpContent).Result);
+            var respJson = PostJson(url, request);
+            return JsonConvert.DeserializeObject<T>(respJson);
+        }
+
+        public static string PutJson(string url, object request)
+        {
+            return BuildJsonQuery(request, (client, httpContent) => client.PutAsync(url, httpContent).Result);
         }
 
         public static T PutJson<T>(string url, object request)
         {
-            return BuildJsonQuery<T>(url, request, (client, httpContent) => client.PutAsync(url, httpContent).Result);
+            var respJson = PutJson(url, request);
+            return JsonConvert.DeserializeObject<T>(respJson);
         }
     }
 }
