@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Hanlin.Common.Utils
 {
@@ -16,9 +17,13 @@ namespace Hanlin.Common.Utils
             return client;
         }
 
-        private static string BuildJsonQuery(object request, Func<HttpClient, StringContent, HttpResponseMessage> exec)
+        private static string BuildJsonQuery(object request, Func<HttpClient, StringContent, HttpResponseMessage> exec, bool defaultCase = false)
         {
-            var requestJson = JsonConvert.SerializeObject(request);
+            var requestJson = defaultCase ? JsonConvert.SerializeObject(request, new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver()
+            }): JsonConvert.SerializeObject(request);
+
             var client = BuildJsonClient();
             var httpContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
@@ -42,26 +47,27 @@ namespace Hanlin.Common.Utils
             return JsonConvert.DeserializeObject<T>(Get(url));
         }
 
-        public static string PostJson(string url, object request)
+        public static string PostJson(string url, object request, bool defaultCase = false)
         {
-            return BuildJsonQuery(request, (client, httpContent) => client.PostAsync(url, httpContent).Result);
+            return BuildJsonQuery(request, (client, httpContent) => client.PostAsync(url, httpContent).Result, defaultCase);
         }
 
-        public static T PostJson<T>(string url, object request)
+        public static T PostJson<T>(string url, object request, bool defaultCase = false)
         {
-            var respJson = PostJson(url, request);
+            var respJson = PostJson(url, request, defaultCase);
             return JsonConvert.DeserializeObject<T>(respJson);
         }
-
-        public static string PutJson(string url, object request)
+        
+        public static string PutJson(string url, object request, bool defaultCase = false)
         {
-            return BuildJsonQuery(request, (client, httpContent) => client.PutAsync(url, httpContent).Result);
+            return BuildJsonQuery(request, (client, httpContent) => client.PutAsync(url, httpContent).Result, defaultCase);
         }
 
-        public static T PutJson<T>(string url, object request)
+        public static T PutJson<T>(string url, object request, bool defaultCase = false)
         {
-            var respJson = PutJson(url, request);
+            var respJson = PutJson(url, request, defaultCase);
             return JsonConvert.DeserializeObject<T>(respJson);
         }
+        
     }
 }
