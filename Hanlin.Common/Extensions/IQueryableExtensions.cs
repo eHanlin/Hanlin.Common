@@ -4,6 +4,9 @@ using System.Linq.Expressions;
 
 namespace Hanlin.Common.Extensions
 {
+    /// <summary>
+    /// Reference: http://stackoverflow.com/a/22227975/494297
+    /// </summary>
     public static class IQueryableExtensions
     {
         public static IQueryable<T> OrderByField<T>(this IQueryable<T> q, string sortField, bool ascending)
