@@ -30,6 +30,9 @@ namespace Hanlin.Common.Windows
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         private static extern bool IsClipboardFormatAvailable(uint format);
 
+        [DllImport("Kernel32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        private static extern uint GetLastError();
+
         [DllImport("user32.dll")]
         static extern bool EmptyClipboard();
 
@@ -83,7 +86,7 @@ namespace Hanlin.Common.Windows
                     Failed("Cannot open clipboard.");
                 }
 
-                Thread.Sleep(1);
+                Thread.Sleep(10);
 
                 retryCount++;
             }
