@@ -33,7 +33,7 @@ namespace Hanlin.Common.Utils
                 ContractResolver = new DefaultContractResolver()
             }): JsonConvert.SerializeObject(request);
 
-            var client = BuildJsonClient();
+            var client = BuildJsonClient(setting);
             var httpContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
             var response = exec(client, httpContent);
