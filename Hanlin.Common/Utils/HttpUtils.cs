@@ -9,7 +9,7 @@ namespace Hanlin.Common.Utils
 {
     public class HttpSetting
     {
-        public TimeSpan Timeout { set; get; } = TimeSpan.FromMinutes(2);
+        public TimeSpan? Timeout { set; get; }
     }
 
     public class HttpUtils
@@ -21,7 +21,7 @@ namespace Hanlin.Common.Utils
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             if (setting != null)
             {
-                client.Timeout = setting.Timeout;
+                if(setting.Timeout.HasValue) client.Timeout = setting.Timeout.Value;
             }
             return client;
         }
