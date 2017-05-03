@@ -6,9 +6,14 @@ namespace Hanlin.Common.Text
     {
         public string Filter(string input)
         {
+            return Filter(input, null);
+        }
+
+        public string Filter(string input, StringFilterOptions options)
+        {
             foreach (var filter in this)
             {
-                input = filter.Filter(input);
+                input = filter.Filter(input, options);
             }
             return input;
         }

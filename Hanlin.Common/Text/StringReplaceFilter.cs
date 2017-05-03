@@ -10,6 +10,11 @@ namespace Hanlin.Common.Text
 
         public string Filter(string input)
         {
+            return Filter(input, null);
+        }
+
+        public string Filter(string input, StringFilterOptions options)
+        {
             foreach (var pattern in Patterns)
             {
                 input = Regex.Replace(input, pattern.Key, pattern.Value, RegexOptions.IgnoreCase);
