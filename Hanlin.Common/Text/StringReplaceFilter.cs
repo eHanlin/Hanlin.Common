@@ -33,12 +33,12 @@ namespace Hanlin.Common.Text
         }
     }
 
-    public class StringReplaceFilter<T> : GenericStringReplaceFilter<StringFilterOptions>
+    public class StringReplaceFilter : GenericStringReplaceFilter<StringFilterOptions>
     {
         
     }
 
-    public class EmptyLineFilter : StringReplaceFilter<StringFilterOptions>
+    public class EmptyLineFilter : StringReplaceFilter
     {
         public EmptyLineFilter()
         {
@@ -46,7 +46,7 @@ namespace Hanlin.Common.Text
         }
     }
 
-    public class HtmlReplaceFilter: StringReplaceFilter<StringFilterOptions>
+    public class HtmlReplaceFilter: StringReplaceFilter
     {
         public HtmlReplaceFilter()
         {
