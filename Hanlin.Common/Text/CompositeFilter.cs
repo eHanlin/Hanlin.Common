@@ -2,14 +2,14 @@
 
 namespace Hanlin.Common.Text
 {
-    public class CompositeFilter : List<IStringFilter>, IStringFilter
+    public class CompositeFilter<T> : List<IStringFilter<T>>, IStringFilter<T> where T : StringFilterOptions
     {
         public string Filter(string input)
         {
-            return Filter<StringFilterOptions>(input, null);
+            return Filter(input, null);
         }
 
-        public string Filter<T>(string input, T options) where T : StringFilterOptions
+        public string Filter(string input, T options)
         {
             foreach (var filter in this)
             {

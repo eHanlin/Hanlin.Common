@@ -4,26 +4,16 @@ using System.Text.RegularExpressions;
 
 namespace Hanlin.Common.Text
 {
-    public class StringReplaceFilter : IStringFilter
+    public class StringReplaceFilter<T> : IStringFilter<T> where T : StringFilterOptions
     {
         private readonly IDictionary<string, string> Patterns = new Dictionary<string, string>();
 
         public string Filter(string input)
         {
-            return Filter<StringFilterOptions>(input, null);
+            return Filter(input, null);
         }
 
-      /*  public string Filter(string input, StringFilterOptions options)
-        {
-            foreach (var pattern in Patterns)
-            {
-                input = Regex.Replace(input, pattern.Key, pattern.Value, RegexOptions.IgnoreCase);
-            }
-
-            return input;
-        }*/
-
-        public string Filter<T>(string input, T options) where T : StringFilterOptions
+        public string Filter(string input, T options)
         {
             foreach (var pattern in Patterns)
             {
@@ -32,7 +22,7 @@ namespace Hanlin.Common.Text
 
             return input;
         }
-
+        
         public void Replace(string regex, string replaceRegex)
         {
             Patterns[regex] = replaceRegex;
@@ -44,7 +34,7 @@ namespace Hanlin.Common.Text
         }
     }
 
-    public class EmptyLineFilter : StringReplaceFilter
+    public class EmptyLineFilter : StringReplaceFilter<StringFilterOptions>
     {
         public EmptyLineFilter()
         {
@@ -52,7 +42,7 @@ namespace Hanlin.Common.Text
         }
     }
 
-    public class HtmlReplaceFilter : StringReplaceFilter
+    public class HtmlReplaceFilter: StringReplaceFilter<StringFilterOptions>
     {
         public HtmlReplaceFilter()
         {

@@ -1,8 +1,8 @@
 ﻿namespace Hanlin.Common.Text
 {
-    public interface IStringFilter
+    public interface IStringFilter<in T> where T : StringFilterOptions
     {
         string Filter(string input);
-        string Filter<T>(string input, T options) where T : StringFilterOptions;
+        string Filter(string input, T options);
     }
 }
