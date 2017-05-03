@@ -6,10 +6,10 @@ namespace Hanlin.Common.Text
     {
         public string Filter(string input)
         {
-            return Filter(input, null);
+            return Filter<StringFilterOptions>(input, null);
         }
 
-        public string Filter(string input, StringFilterOptions options)
+        public string Filter<T>(string input, T options) where T : StringFilterOptions
         {
             foreach (var filter in this)
             {

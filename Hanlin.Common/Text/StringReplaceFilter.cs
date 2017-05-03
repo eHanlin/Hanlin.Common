@@ -10,10 +10,20 @@ namespace Hanlin.Common.Text
 
         public string Filter(string input)
         {
-            return Filter(input, null);
+            return Filter<StringFilterOptions>(input, null);
         }
 
-        public string Filter(string input, StringFilterOptions options)
+      /*  public string Filter(string input, StringFilterOptions options)
+        {
+            foreach (var pattern in Patterns)
+            {
+                input = Regex.Replace(input, pattern.Key, pattern.Value, RegexOptions.IgnoreCase);
+            }
+
+            return input;
+        }*/
+
+        public string Filter<T>(string input, T options) where T : StringFilterOptions
         {
             foreach (var pattern in Patterns)
             {
