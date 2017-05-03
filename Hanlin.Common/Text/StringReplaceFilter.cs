@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 
 namespace Hanlin.Common.Text
 {
-    public class StringReplaceFilter<T> : IStringFilter<T> where T : StringFilterOptions
+    public class GenericStringReplaceFilter<T> : IStringFilter<T> where T : StringFilterOptions
     {
         private readonly IDictionary<string, string> Patterns = new Dictionary<string, string>();
 
@@ -22,7 +21,7 @@ namespace Hanlin.Common.Text
 
             return input;
         }
-        
+
         public void Replace(string regex, string replaceRegex)
         {
             Patterns[regex] = replaceRegex;
@@ -32,6 +31,11 @@ namespace Hanlin.Common.Text
         {
             Patterns[regex] = string.Empty;
         }
+    }
+
+    public class StringReplaceFilter<T> : GenericStringReplaceFilter<StringFilterOptions>
+    {
+        
     }
 
     public class EmptyLineFilter : StringReplaceFilter<StringFilterOptions>
