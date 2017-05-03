@@ -94,6 +94,7 @@
     <Compile Include="Text\CompositeFilter.cs" />
     <Compile Include="Text\FullWidthCharacter.cs" />
     <Compile Include="Text\IStringFilter.cs" />
+    <Compile Include="Text\StringFilterOptions.cs" />
     <Compile Include="Text\StringReplaceFilter.cs" />
     <Compile Include="UnicodeUtil.cs" />
     <Compile Include="Utils\ContentMemoryStream.cs" />
