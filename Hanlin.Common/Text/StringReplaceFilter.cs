@@ -7,12 +7,12 @@ namespace Hanlin.Common.Text
     {
         private readonly IDictionary<string, string> Patterns = new Dictionary<string, string>();
 
-        public string Filter(string input)
+        public virtual string Filter(string input)
         {
             return Filter(input, null);
         }
 
-        public string Filter(string input, T options)
+        public virtual string Filter(string input, T options)
         {
             foreach (var pattern in Patterns)
             {
