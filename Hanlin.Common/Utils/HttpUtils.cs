@@ -26,13 +26,18 @@ namespace Hanlin.Common.Utils
             return client;
         }
 
-        private static string BuildJsonQuery(object request, Func<HttpClient, StringContent, HttpResponseMessage> exec, bool defaultCase = false, HttpSetting setting = null)
+        private static string BuildJsonQuery(object request, Func<HttpClient, StringContent, HttpResponseMessage> exec,
+            bool defaultCase = false, HttpSetting setting = null)
         {
             var requestJson = defaultCase ? JsonConvert.SerializeObject(request, new JsonSerializerSettings
             {
                 ContractResolver = new DefaultContractResolver()
-            }): JsonConvert.SerializeObject(request);
+            }) : JsonConvert.SerializeObject(request);
+            return BuildJsonQuery(requestJson, exec, setting);
+        }
 
+        private static string BuildJsonQuery(string requestJson, Func<HttpClient, StringContent, HttpResponseMessage> exec, HttpSetting setting = null)
+        {
             var client = BuildJsonClient(setting);
             var httpContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
@@ -59,6 +64,28 @@ namespace Hanlin.Common.Utils
         public static string PostJson(string url, object request, bool defaultCase = false, HttpSetting setting = null)
         {
             return BuildJsonQuery(request, (client, httpContent) => client.PostAsync(url, httpContent).Result, defaultCase, setting);
+        }
+
+        public static string PostJson(string url, string jsonBody, HttpSetting setting = null)
+        {
+            return BuildJsonQuery(jsonBody, (client, httpContent) => client.PostAsync(url, httpContent).Result, setting);
+        }
+
+        public static T PostJson<T>(string url, string jsonBody, HttpSetting setting = null)
+        {
+            var respJson = PostJson(url, jsonBody, setting);
+            return JsonConvert.DeserializeObject<T>(respJson);
+        }
+
+        public static string PutJson(string url, string jsonBody, HttpSetting setting = null)
+        {
+            return BuildJsonQuery(jsonBody, (client, httpContent) => client.PutAsync(url, httpContent).Result, setting);
+        }
+
+        public static T PutJson<T>(string url, string jsonBody, HttpSetting setting = null)
+        {
+            var respJson = PutJson(url, jsonBody, setting);
+            return JsonConvert.DeserializeObject<T>(respJson);
         }
 
         public static T PostJson<T>(string url, object request, bool defaultCase = false, HttpSetting setting = null)
