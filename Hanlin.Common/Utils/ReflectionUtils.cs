@@ -53,7 +53,14 @@ namespace Hanlin.Common.Utils
 
         public static string GetMemberName<T, TValue>(Expression<Func<T, TValue>> memberAccess)
         {
-            return ((MemberExpression)memberAccess.Body).Member.Name;
+            return GetMemberName<T, TValue>(memberAccess, false);
+        }
+
+        public static string GetMemberName<T, TValue>(Expression<Func<T, TValue>> memberAccess, bool isFirstLowerCase)
+        {
+            var name = ((MemberExpression)memberAccess.Body).Member.Name;
+            if (isFirstLowerCase) name = ToFirstLowerOrUpperCase(name, true);
+            return name;
         }
     }
 }
