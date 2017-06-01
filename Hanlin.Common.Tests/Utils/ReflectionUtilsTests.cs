@@ -53,6 +53,7 @@ namespace Hanlin.Common.Tests.Utils
         public void MemberName()
         {
             Assert.AreEqual(ReflectionUtils.GetMemberName((Company c) => c.ValidationUnit), "ValidationUnit");
+            Assert.AreEqual(ReflectionUtils.GetMemberName((Company c) => c.ValidationUnit, true), "validationUnit");
         }
     }
 }
