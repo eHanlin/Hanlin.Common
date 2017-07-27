@@ -43,18 +43,29 @@ namespace Hanlin.Common.Utils
 
             var response = exec(client, httpContent);
 
-            response.EnsureSuccessStatusCode();
-
-            return response.Content.ReadAsStringAsync().Result;
+            return GetResponseResult(response);
         }
 
         public static string Get(string url, HttpSetting setting = null)
         {
             var client = BuildJsonClient(setting);
             var response = client.GetAsync(url).Result;
-            response.EnsureSuccessStatusCode();
-            return response.Content.ReadAsStringAsync().Result;
+            return GetResponseResult(response);
         }
+
+        private static string GetResponseResult(HttpResponseMessage response)
+        {
+            var result = response.Content.ReadAsStringAsync().Result;
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException e)
+            {
+                throw new HttpRequestException(result, e);
+            }
+            return result;
+        } 
 
         public static T GetJson<T>(string url, HttpSetting setting = null)
         {
