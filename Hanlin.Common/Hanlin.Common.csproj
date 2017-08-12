@@ -94,6 +94,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranges.cs" />
     <Compile Include="ShortGuid.cs" />
+    <Compile Include="Tasks\BatchOperation.cs" />
+    <Compile Include="Tasks\RetryOperation.cs" />
     <Compile Include="Text\ChineseNumerals.cs" />
     <Compile Include="Text\CompositeFilter.cs" />
     <Compile Include="Text\FullWidthCharacter.cs" />
