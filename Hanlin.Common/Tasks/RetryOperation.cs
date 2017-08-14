@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Reflection;
+using log4net;
 
 namespace Hanlin.Common.Tasks
 {
     public class RetryOperation
     {
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public Action Operation { get; }
         public int MaxAttempts { get; }
         public int AttemptCount { get; private set; }
@@ -30,10 +34,14 @@ namespace Hanlin.Common.Tasks
                     Operation();
                     break;
                 }
-                catch (TEx)
+                catch (TEx e)
                 {
+                    Log.Warn($"Attempt {AttemptCount}/{MaxAttempts} resulted in exception: {e}");
+
                     if (AttemptCount == MaxAttempts)
                     {
+                        Log.Warn($"Retry attempts exhausted ({MaxAttempts} attempts were made.)");
+
                         throw;
                     }
                     else
