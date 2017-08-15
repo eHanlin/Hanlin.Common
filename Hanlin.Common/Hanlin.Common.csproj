@@ -69,6 +69,7 @@
     <Compile Include="Collections\BiDictionary.cs" />
     <Compile Include="Comparers\AlphanumComparatorFast.cs" />
     <Compile Include="Comparers\ChineseNumerialsComparator.cs" />
+    <Compile Include="Configuration\ConnectionStringSettingsExtensions.cs" />
     <Compile Include="Configuration\DatabaseConfigurationSection.cs" />
     <Compile Include="ContentType.cs" />
     <Compile Include="Data\AdoHelper.cs" />
