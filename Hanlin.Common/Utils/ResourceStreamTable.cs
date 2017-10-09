@@ -25,15 +25,16 @@ namespace Hanlin.Common.Utils
             return outputPaths;
         }
 
+        /// <summary>
+        /// If an entry with the same key already exists in the table, the incoming entry will be ignored.
+        /// </summary>
+        /// <param name="other">The entries to be merged.</param>
+        /// <returns>Returns this instance</returns>
         public ResourceStreamTable Merge(ResourceStreamTable other)
         {
             foreach (var entry in other)
             {
-                if (this.ContainsKey(entry.Key))
-                {
-                    throw new ArgumentException("Duplicate entry in other table: " + entry);
-                }
-                else
+                if (!ContainsKey(entry.Key))
                 {
                     this[entry.Key] = entry.Value;
                 }
