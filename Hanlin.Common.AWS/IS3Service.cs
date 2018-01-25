@@ -10,9 +10,9 @@ namespace Hanlin.Common.AWS
 
         IEnumerable<string> ListBuckets();
 
-        string Put(string key, byte[] bytes);
-        string Put(string key, Stream inputStream);
-        void Put(string key, string path);
+        string Put(string key, byte[] bytes, string contentType = null);
+        string Put(string key, Stream inputStream, string contentType = null);
+        void Put(string key, string path, string contentType = null);
 
         void Get(string key, Stream outputStream);
 

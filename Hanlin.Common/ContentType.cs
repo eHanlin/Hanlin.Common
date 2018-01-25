@@ -27,6 +27,7 @@ namespace Hanlin.Common
 
         public const string xls = "application/vnd.ms-excel";
         public const string xlsx = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+        public const string json = "application/json";
 
 
         public const string unknown = "application/unknown";
@@ -48,6 +49,7 @@ namespace Hanlin.Common
             _mapping.Add("snappy", snappy);
             _mapping.Add("wmf", wmf);
             _mapping.Add("emf", emf);
+            _mapping.Add("json", json);
         }
 
         public static string GetContentTypeByFilename(string filename)

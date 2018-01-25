@@ -51,20 +51,20 @@ namespace Hanlin.Common.AWS
             return BucketUrl + key;
         }
 
-        public void Put(string key, string path)
+        public void Put(string key, string path, string contentType = null)
         {
             using (var stream = new FileStream(path, FileMode.Open))
             {
-                Put(key, stream);
+                Put(key, stream, contentType);
             }
         }
 
-        public string Put(string key, byte[] bytes)
+        public string Put(string key, byte[] bytes, string contentType = null)
         {
-            return Put(key, new MemoryStream(bytes)); // It's not necessary to dispose the MemoryStream as it is backed by an array.
+            return Put(key, new MemoryStream(bytes), contentType); // It's not necessary to dispose the MemoryStream as it is backed by an array.
         }
 
-        public string Put(string key, Stream inputStream)
+        public string Put(string key, Stream inputStream, string contentType = null)
         {
             VerifyKey(key);
 
@@ -85,7 +85,10 @@ namespace Hanlin.Common.AWS
                 AutoCloseStream = false,
             };
 
+            if (!string.IsNullOrEmpty(contentType)) request.ContentType = contentType;
+
             var response = S3.PutObject(request);
+
 
             inputStream.Position = 0; // Rewind the stream as the stream could be used again after the method returns.
 
