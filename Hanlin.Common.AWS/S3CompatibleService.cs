@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
@@ -107,7 +108,11 @@ namespace Hanlin.Common.AWS
             {
                 key = key.Replace(BucketUrl, string.Empty);
             }
-
+            else
+            {
+                var regex = new Regex($@"https?://[^/]*\.amazonaws\.com/{BucketName}/");
+                key = regex.Replace(key, string.Empty);
+            }
             return key;
         }
 
