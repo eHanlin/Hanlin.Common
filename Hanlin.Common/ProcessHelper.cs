@@ -15,6 +15,11 @@ namespace Hanlin.Common
 
         public static bool WaitForWordToExit(int waitTimeMillis = 30000)
         {
+            return WaitForProcessesToExit(() => GetWordProcesses().Any(), waitTimeMillis);
+        }
+
+        private static bool WaitForProcessesToExit(Func<bool> hasAnyProcess, int waitTimeMillis = 30000)
+        {
             const int waitSlice = 50;
 
             if (waitTimeMillis < waitSlice) return false;
@@ -24,10 +29,11 @@ namespace Hanlin.Common
             {
                 Thread.Sleep(50);
                 tries -= 1;
-            } while (GetWordProcesses().Any() && tries > 0);
+            } while (hasAnyProcess() && tries > 0);
 
             return tries > 0;
         }
+
 
         public static bool TryKillWord()
         {
@@ -56,6 +62,42 @@ namespace Hanlin.Common
             {
                 tmp.Kill();
             }
+        }
+
+        public static Process[] GetProcessByWindowTitle(string title)
+        {
+            var processes = Process.GetProcesses();
+
+            return processes.Where(process => process.MainWindowTitle.Equals(title)).ToArray();
+        }
+
+        public static void KillByWindowTitle(string title)
+        {
+            var processes = GetProcessByWindowTitle(title);
+
+            foreach (var process in processes)
+            {
+                try
+                {
+                    process.Kill();
+                }
+                catch (Win32Exception)
+                {
+
+                }
+            }
+        }
+
+        public static bool TryKillByWindowTitle(string title)
+        {
+            KillByWindowTitle(title);
+
+            return GetProcessByWindowTitle(title).Any();
+        }
+
+        public static bool WaitForTitleProcessesToExit(string title, int waitTimeMillis = 30000)
+        {
+            return WaitForProcessesToExit(() => GetProcessByWindowTitle(title).Any(), waitTimeMillis);
         }
     }
 }
