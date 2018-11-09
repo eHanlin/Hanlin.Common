@@ -52,7 +52,7 @@ namespace Hanlin.Common
                 // In this case, Word process should exit anyway even though an exception is thrown.
             }
 
-            return Process.GetProcessesByName(wordProcName).Any();
+            return !Process.GetProcessesByName(wordProcName).Any();
         }
 
         public static void Kill(string procName)
@@ -92,7 +92,7 @@ namespace Hanlin.Common
         {
             KillByWindowTitle(title);
 
-            return GetProcessByWindowTitle(title).Any();
+            return !GetProcessByWindowTitle(title).Any();
         }
 
         public static bool WaitForTitleProcessesToExit(string title, int waitTimeMillis = 30000)
