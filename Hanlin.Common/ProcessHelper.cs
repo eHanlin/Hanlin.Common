@@ -15,10 +15,10 @@ namespace Hanlin.Common
 
         public static bool WaitForWordToExit(int waitTimeMillis = 30000)
         {
-            return WaitForProcessesToExit(() => GetWordProcesses().Any(), waitTimeMillis);
+            return WaitForProcesses(() => GetWordProcesses().Any(), waitTimeMillis);
         }
 
-        private static bool WaitForProcessesToExit(Func<bool> hasAnyProcess, int waitTimeMillis = 30000)
+        private static bool WaitForProcesses(Func<bool> hasAnyProcess, int waitTimeMillis = 30000)
         {
             const int waitSlice = 50;
 
@@ -68,7 +68,7 @@ namespace Hanlin.Common
         {
             var processes = Process.GetProcesses();
 
-            return processes.Where(process => process.MainWindowTitle.Equals(title)).ToArray();
+            return processes.Where(process => process.MainWindowTitle.Contains(title)).ToArray();
         }
 
         public static void KillByWindowTitle(string title)
@@ -97,7 +97,12 @@ namespace Hanlin.Common
 
         public static bool WaitForTitleProcessesToExit(string title, int waitTimeMillis = 30000)
         {
-            return WaitForProcessesToExit(() => GetProcessByWindowTitle(title).Any(), waitTimeMillis);
+            return WaitForProcesses(() => GetProcessByWindowTitle(title).Any(), waitTimeMillis);
+        }
+
+        public static bool WaitForTitleProcessesToOpen(string title, int waitTimeMillis = 30000)
+        {
+            return WaitForProcesses(() => !GetProcessByWindowTitle(title).Any(), waitTimeMillis);
         }
     }
 }
