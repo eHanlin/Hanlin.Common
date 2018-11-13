@@ -104,5 +104,10 @@ namespace Hanlin.Common
         {
             return WaitForProcesses(() => !GetProcessByWindowTitle(title).Any(), waitTimeMillis);
         }
+
+        public static bool WaitForProcessesToExit(Process process, int waitTimeMillis = 30000)
+        {
+            return WaitForProcesses(() => !process.HasExited, waitTimeMillis);
+        }
     }
 }
