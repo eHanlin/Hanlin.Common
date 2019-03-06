@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Hanlin.Common.Extensions
@@ -22,6 +23,23 @@ namespace Hanlin.Common.Extensions
         public static string AsString(this Dictionary<String, String> hash)
         {
             return String.Join(", ", hash.Select(kvp => kvp.Key + ":" + kvp.Value));
+        }
+
+        public static bool GetBoolean<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+        {
+            var rawValue = dictionary.GetValueOrDefault(key);
+            var result = false;
+
+            try
+            {
+                result = Convert.ToBoolean(rawValue);
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
+
+            return result;
         }
     }
 }
