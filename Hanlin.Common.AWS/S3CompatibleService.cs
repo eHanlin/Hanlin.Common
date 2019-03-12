@@ -52,20 +52,20 @@ namespace Hanlin.Common.AWS
             return BucketUrl + key;
         }
 
-        public void Put(string key, string path, string contentType = null)
+        public void Put(string key, string path, string contentType = null, S3CannedACL cannedAcl = null)
         {
             using (var stream = new FileStream(path, FileMode.Open))
             {
-                Put(key, stream, contentType);
+                Put(key, stream, contentType, cannedAcl: cannedAcl);
             }
         }
 
-        public string Put(string key, byte[] bytes, string contentType = null)
+        public string Put(string key, byte[] bytes, string contentType = null, S3CannedACL cannedAcl = null)
         {
-            return Put(key, new MemoryStream(bytes), contentType); // It's not necessary to dispose the MemoryStream as it is backed by an array.
+            return Put(key, new MemoryStream(bytes), contentType, cannedAcl: cannedAcl); // It's not necessary to dispose the MemoryStream as it is backed by an array.
         }
 
-        public string Put(string key, Stream inputStream, string contentType = null)
+        public string Put(string key, Stream inputStream, string contentType = null, S3CannedACL cannedAcl = null)
         {
             VerifyKey(key);
 
@@ -82,7 +82,7 @@ namespace Hanlin.Common.AWS
                 BucketName = BucketName,
                 InputStream = inputStream,
                 Key = key,
-                CannedACL = S3CannedACL.PublicRead,
+                CannedACL = cannedAcl ?? S3CannedACL.PublicRead,
                 AutoCloseStream = false,
             };
 
