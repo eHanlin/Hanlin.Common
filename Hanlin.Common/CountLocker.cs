@@ -10,6 +10,7 @@ namespace Hanlin.Common
         private readonly Func<bool> _stop;
         private readonly Func<object> _done;
         private int _count = 0;
+        private Thread _thread;
 
         public CountLocker(Func<bool> stop, Func<object> done, int timeout)
         {
@@ -17,7 +18,13 @@ namespace Hanlin.Common
             _stop = stop;
             _done = done;
             _count = 0;
-            new Thread(Release).Start();
+        }
+
+        public void Start()
+        {
+            if (_thread != null) return;
+            _thread = new Thread(Release);
+            _thread.Start();
         }
 
         public void Inc()
