@@ -74,6 +74,7 @@
     <Compile Include="Configuration\DatabaseConfigurationSection.cs" />
     <Compile Include="ContentType.cs" />
     <Compile Include="Data\AdoHelper.cs" />
+    <Compile Include="CountLocker.cs" />
     <Compile Include="DiffMatchPatch.cs" />
     <Compile Include="Enums\Enumeration.cs" />
     <Compile Include="Enums\EnumExceptionHelper.cs" />
