@@ -25,6 +25,7 @@ WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace Hanlin.Common.Windows
 {
@@ -321,15 +322,20 @@ namespace Hanlin.Common.Windows
                         // Read the actual file content 
                         byte[] byData = new byte[dwSize];
                         pStream.Read(byData, (int)dwSize, ulRead);
-
+                        
                         // Create the file
-                        var bWriter = new BinaryWriter(File.Open(Path.Combine(destinationFolder, path), FileMode.Create));
+                        var bWriter = new BinaryWriter(File.Open(Path.Combine(destinationFolder, GetFileName(path)), FileMode.Create));
                         bWriter.Write(byData);
                         bWriter.Close();
                     }
                 }
             }
             while (numReturned > 0);
+        }
+
+        private static string GetFileName(string filePath)
+        {
+            return Regex.Replace(filePath, @"^.*[\\]", "");
         }
 
     }
