@@ -38,19 +38,23 @@ namespace Hanlin.Common.Utils
 
         private static string BuildJsonQuery(string requestJson, Func<HttpClient, StringContent, HttpResponseMessage> exec, HttpSetting setting = null)
         {
-            var client = BuildJsonClient(setting);
-            var httpContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
+            using (var client = BuildJsonClient(setting))
+            {
+                var httpContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-            var response = exec(client, httpContent);
+                var response = exec(client, httpContent);
 
-            return GetResponseResult(response);
+                return GetResponseResult(response);
+            }
         }
 
         public static string Get(string url, HttpSetting setting = null)
         {
-            var client = BuildJsonClient(setting);
-            var response = client.GetAsync(url).Result;
-            return GetResponseResult(response);
+            using (var client = BuildJsonClient(setting))
+            {
+                var response = client.GetAsync(url).Result;
+                return GetResponseResult(response);
+            }
         }
 
         private static string GetResponseResult(HttpResponseMessage response)
