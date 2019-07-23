@@ -67,7 +67,7 @@ namespace Hanlin.Common.Utils
 
         private string IndentString
         {
-            get { return new string(IndentChar, currentIndent * IndentSize); }
+            get { return new string(IndentChar, Math.Abs(currentIndent * IndentSize)); }
         }
     }
 }
