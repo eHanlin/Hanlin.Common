@@ -33,12 +33,28 @@ namespace Hanlin.Common.Utils
             return (T)propInfo.GetValue(instance);
         }
 
+        public static void SetPropertyValue(object instance, string field, object value, bool isFirstUpperCase = false, bool isFirstLowerCase = false)
+        {
+            var fieldName = GetFieldName(field, isFirstUpperCase, isFirstLowerCase);
+            var instanceType = instance.GetType();
+            var propInfo = instanceType.GetProperty(fieldName);
+            propInfo.SetValue(instance, value);
+        }
+
         public static T GetFieldValue<T>(object instance, string field, bool isFirstUpperCase = false, bool isFirstLowerCase = false)
         {
             var fieldName = GetFieldName(field, isFirstUpperCase, isFirstLowerCase);
             var instanceType = instance.GetType();
             var fieldInfo = instanceType.GetField(fieldName);
             return (T)fieldInfo.GetValue(instance);
+        }
+
+        public static void SetFieldValue(object instance, string field, object value, bool isFirstUpperCase = false, bool isFirstLowerCase = false)
+        {
+            var fieldName = GetFieldName(field, isFirstUpperCase, isFirstLowerCase);
+            var instanceType = instance.GetType();
+            var fieldInfo = instanceType.GetField(fieldName);
+            fieldInfo.SetValue(instance, value);
         }
 
         public static IEnumerable<string> GetPropertyNames(object instance, bool isFirstUpperCase = false, bool isFirstLowerCase = false)

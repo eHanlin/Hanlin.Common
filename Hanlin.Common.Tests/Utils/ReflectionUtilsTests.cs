@@ -16,10 +16,18 @@ namespace Hanlin.Common.Tests.Utils
     {
         [TestCase("Hanlin", "name", true, false)]
         [TestCase("Hanlin", "Name", false, false)]
-        public void Property(string name, string fieldName, bool isUpperCaes, bool isLowerCase)
+        public void Property(string name, string fieldName, bool isUpperCase, bool isLowerCase)
         {
             var company = new Company {Name = name};
-            Assert.AreEqual(name, ReflectionUtils.GetPropertyValue<string>(company, fieldName, isUpperCaes, isLowerCase));
+            Assert.AreEqual(name, ReflectionUtils.GetPropertyValue<string>(company, fieldName, isUpperCase, isLowerCase));
+        }
+
+        [TestCase("Hanlin", "name", true, false)]
+        public void SetProperty(string name, string fieldName, bool isUpperCase, bool isLowerCase)
+        {
+            var company = new Company();
+            ReflectionUtils.SetPropertyValue(company, fieldName, name, isUpperCase, isLowerCase);
+            Assert.AreEqual(name, company.Name);
         }
 
         [TestCase]
@@ -38,6 +46,14 @@ namespace Hanlin.Common.Tests.Utils
             var company = new Company();
             company.ValidationUnit = validationUnit;
             Assert.AreEqual(validationUnit, ReflectionUtils.GetFieldValue<string>(company, fieldName, isUpperCaes, isLowerCase));
+        }
+
+        [TestCase("gov", "validationUnit", true, false)]
+        public void SetField(string validationUnit, string fieldName, bool isUpperCase, bool isLowerCase)
+        {
+            var company = new Company();
+            ReflectionUtils.SetFieldValue(company, fieldName, validationUnit, isUpperCase, isLowerCase);
+            Assert.AreEqual(validationUnit, company.ValidationUnit);
         }
 
         [TestCase]
