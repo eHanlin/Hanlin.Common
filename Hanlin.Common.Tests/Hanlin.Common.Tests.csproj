@@ -67,6 +67,7 @@
     <Compile Include="Text\ChineseNumeralsTests.cs" />
     <Compile Include="Text\FullWidthCharacterTests.cs" />
     <Compile Include="Utils\ContentMemoryStreamTests.cs" />
+    <Compile Include="Utils\LatexUtilsTests.cs" />
     <Compile Include="Utils\ReflectionUtilsTests.cs" />
   </ItemGroup>
   <ItemGroup>

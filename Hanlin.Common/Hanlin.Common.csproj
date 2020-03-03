@@ -112,6 +112,7 @@
     <Compile Include="Utils\FileDescriptor.cs" />
     <Compile Include="Utils\HttpUtils.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
+    <Compile Include="Utils\LatexUtils.cs" />
     <Compile Include="Utils\LogBuilder.cs" />
     <Compile Include="Utils\ObjectCopier.cs" />
     <Compile Include="Utils\PathEx.cs" />
